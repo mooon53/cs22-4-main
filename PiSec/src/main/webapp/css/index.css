@@ -1,0 +1,107 @@
+#cameraContainer {
+    width: 100vw;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    /*gap: 50px;*/
+}
+
+.camera {
+    box-shadow: grey 5px 5px 20px;
+    max-width: 90vw;
+    max-height: 50vw;
+    width: 535px;
+    height: 300px;
+    margin: 50px;
+    /*margin-top: 50px;*/
+    /*margin-bottom: 50px;*/
+    border-radius: 15px;
+    background-size: cover;
+}
+
+.cameraOverlay {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.cameraInfo {
+    display: flex;
+    justify-content: space-between;
+}
+
+.cameraTextContainer {
+    margin-left: 25px;
+    margin-top: 25px;
+    display: inline-block;
+    color: #E8ECF1;
+    text-shadow: black 0 0 0.5rem;
+    width: 20vw;
+}
+
+.cameraTitle {
+    font-size: 2rem;
+}
+
+.status {
+    font-size: 1.5rem;
+}
+
+.liveStatusIcon svg {
+    width: 16px;
+    height: 16px;
+}
+
+.notificationIcon {
+    display: inline-block;
+    margin-top: 20px;
+    margin-right: 20px;
+}
+
+.notificationIcon svg {
+    height: 54px;
+    width: 54px;
+}
+
+.notificationIcon svg text {
+    font-size: 2.5rem;
+    text-anchor: middle;
+}
+
+.status {
+    display: flex;
+    justify-content: start;
+    gap: 10px;
+}
+
+.cameraButtonsContainer {
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.cameraButtons {
+    background: linear-gradient(
+            rgba(217, 217, 217, 0.4),
+            rgba(217, 217, 217, 0.5)
+    );
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    height: 100%;
+    width: 90%;
+    border-radius: 85px;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+}
+
+.cameraButton {
+    height: 70%;
+    margin: auto 20px;
+}
+
+.cameraButton img {
+    height: 100%;
+}

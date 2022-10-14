@@ -1,0 +1,75 @@
+#title {
+    font-size: 2.5rem;
+    margin-left: 50px;
+    margin-bottom: 30px;
+}
+
+#contentContainer {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-left: 50px;
+    margin-right: 50px;
+    gap: 20px;
+}
+
+#cameraContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#disable {
+    color: #7393A7;
+    text-decoration-line: underline;
+    font-size: 1.5rem;
+}
+
+#camera img {
+    max-width: 70vw;
+    max-height: 50vw;
+    width: 1080px;
+    /*height: 300px;*/
+    border-radius: 15px;
+    background-size: cover;
+}
+
+#notificationContainer {
+    width: 20vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 70px;
+}
+
+.notification {
+    display: flex;
+    flex-direction: column;
+}
+
+.notification button {
+    background: rgba(181, 207, 216, 0.75);
+    height: 50px;
+    border: none;
+    border-radius: 50px;
+    margin-top: 15px;
+}
+
+.notificationInfo {
+    display: flex;
+    justify-content: space-between;
+}
+
+.notificationInfo {
+    font-size: 2rem;
+}
+
+.notificationDate {
+    font-weight: bold;
+}
+
+.notificationTime {
+    font-family: Spectral, serif;
+    font-weight: lighter;
+    color: #6C737E;
+}
