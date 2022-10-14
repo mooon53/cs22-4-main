@@ -1,7 +1,7 @@
 package resources;
 
-import Exceptions.SessionException;
-import dao.Dbao;
+import exceptions.SessionException;
+import dao.Database;
 import models.*;
 
 import javax.ws.rs.GET;
@@ -15,7 +15,7 @@ import javax.ws.rs.core.UriInfo;
 import java.util.ArrayList;
 import java.util.List;
 
-import static dao.SessionDao.*;
+import static dao.SessionHolder.*;
 
 @Path("/alerts")
 public class AlertsResource {
@@ -34,6 +34,6 @@ public class AlertsResource {
 			return new ArrayList<>();
 		}
 
-		return Dbao.getAlerts();
+		return Database.getAlerts();
 	}
 }

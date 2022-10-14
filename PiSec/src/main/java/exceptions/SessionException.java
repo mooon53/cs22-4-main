@@ -1,4 +1,4 @@
-package Exceptions;
+package exceptions;
 
 public class SessionException extends Throwable {
 	String message;
