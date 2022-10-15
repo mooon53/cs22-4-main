@@ -12,7 +12,7 @@ public class Session {
 	 * Checks if this session is expired
 	 * @return Boolean value True if the session has expired, False if it has not
 	 */
-	public boolean expired() {
-		return expiry.getTime() < new Date().getTime();
-	}
+	public boolean expired() {return expiry.getTime() < new Date().getTime();}
+
+
 }

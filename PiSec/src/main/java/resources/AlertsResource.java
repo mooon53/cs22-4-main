@@ -3,16 +3,10 @@ package resources;
 import exceptions.SessionException;
 import dao.Database;
 import models.*;
+import models.Session;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.HeaderParam;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Request;
-import javax.ws.rs.core.UriInfo;
-import java.util.ArrayList;
+import jakarta.ws.rs.*;
+import jakarta.ws.rs.core.*;
 import java.util.List;
 
 import static dao.SessionHolder.*;
@@ -31,7 +25,7 @@ public class AlertsResource {
 			Session session = getSession(sessionId);
 		} catch (SessionException e) {
 			// return error 401, unauthorized with message to please try log in again
-			return new ArrayList<>();
+			return null;
 		}
 
 		return Database.getAlerts();
