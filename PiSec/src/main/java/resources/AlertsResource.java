@@ -1,7 +1,7 @@
 package resources;
 
 import exceptions.SessionException;
-import dao.Database;
+import dao.DatabaseAccess;
 import models.*;
 import models.Session;
 
@@ -28,6 +28,6 @@ public class AlertsResource {
 			return null;
 		}
 
-		return Database.getAlerts();
+		return DatabaseAccess.getAlerts();
 	}
 }

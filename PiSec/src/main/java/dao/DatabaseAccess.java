@@ -8,7 +8,7 @@ import java.util.List;
 /*
 Gets data from the database and transforms it into a format that is easier to use in the rest of the code
  */
-public class Database {
+public class DatabaseAccess {
 	static {
 	/*
 	This block is run on startup of the server, will be used to make connection to the database, we'll also start a thread
