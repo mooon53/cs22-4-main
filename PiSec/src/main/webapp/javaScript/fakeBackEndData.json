@@ -1,0 +1,41 @@
+{
+  "cameras": {
+    "0" : {
+      "id": 0,
+      "name": "Bedroom",
+      "isLive": false,
+      "notifications": [
+
+      ],
+      "showCaseImage": "bedRoom.jpeg"
+    },
+    "1" : {
+      "id": 1,
+      "name": "Office",
+      "isLive": true,
+      "notifications": [
+        {
+          "type" : "intruder",
+          "message": "An intruder has been detected"
+        }
+      ],
+      "showCaseImage": "office.jpg"
+    },
+    "2" : {
+      "id": 2,
+      "name": "Living Room",
+      "isLive": false,
+      "notifications": [
+      ],
+      "showCaseImage": "livingRoom.jpeg"
+    },
+    "3" : {
+      "id": 3,
+      "name": "Garden",
+      "isLive": false,
+      "notifications": [
+      ],
+      "showCaseImage": "garden.jpg"
+    }
+  }
+}
