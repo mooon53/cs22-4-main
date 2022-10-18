@@ -18,7 +18,7 @@ function loadPage(backEndData){
 }
 
 const helloTemplate = (data) => `
-  <div class="camera unselectable" style="background-image: url('./images/${data.showCaseImage}')" onclick="location.href='camera.html?id=${data.id};'">
+  <div class="camera unselectable" style="background-image: url('./images/${data.showCaseImage}')" onclick="location.href='camera.html?id=${data.id}'">
     <div class="cameraOverlay">
         <div class="cameraInfo">
             <div class="cameraTextContainer">
