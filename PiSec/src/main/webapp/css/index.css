@@ -17,6 +17,12 @@
     /*margin-bottom: 50px;*/
     border-radius: 15px;
     background-size: cover;
+
+    cursor: pointer;
+    transition: transform 500ms;
+}
+.camera:hover{
+    transform: scale(1.05);
 }
 
 .cameraOverlay {
