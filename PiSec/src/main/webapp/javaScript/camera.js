@@ -8,11 +8,16 @@ function loadPage(backEndData){
 
     const currentCamera = cameras[urlParameters['id']];
 
+    if (currentCamera === undefined) {
+        console.log("this camera doesn't exist");
+        return;
+    }
+
     document.title = currentCamera.name;
     document.getElementById('title').innerText = currentCamera.name;
     document.getElementById('livestreamPlaceholder').setAttribute('src', `images/${currentCamera.showCaseImage}`);
     document.getElementById('livestreamPlaceholder').setAttribute('alt', `${currentCamera.name} livestream`);
-
+    document.getElementById('livestreamPlaceholder').classList.remove('loading');
     // fill the notifications:
     let notificationsHTML = "";
     for (const i in currentCamera.notifications){

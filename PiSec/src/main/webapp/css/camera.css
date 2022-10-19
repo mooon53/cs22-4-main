@@ -24,16 +24,34 @@
     text-decoration-line: underline;
     font-size: 1.5rem;
     margin-left: 25px;
+    margin-top: 10px;
 }
 
 #camera img {
-    max-width: 70vw;
-    max-height: 50vw;
+    max-width: 60vw;
+    max-height: 40vw;
     width: 1080px;
     /*height: 300px;*/
     border-radius: 15px;
     background-size: cover;
     box-shadow: 2px 5px 5px -1px black;
+}
+#camera > .loading{
+    width: 60vw;
+    height: 30vw;
+    overflow: hidden;
+    background: #ffffff;
+    background: -webkit-linear-gradient(142deg, #ffffff 0%, #dddddd 50%, #ffffff 100%);
+    background: linear-gradient(142deg, #ffffff 0%, #dddddd 50%, #ffffff 100%);
+      background-size: 500%, 500%;
+
+    animation: loadingAnimation 2s infinite ease-in-out;
+    box-shadow: 1px 2px 5px 2px black;
+}
+@keyframes loadingAnimation {
+    0%{background-position:0 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0 50%}
 }
 
 .notificationContainer {
