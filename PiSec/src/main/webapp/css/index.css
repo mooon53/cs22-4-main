@@ -19,10 +19,12 @@
     background-size: cover;
 
     cursor: pointer;
-    transition: transform 500ms;
+    transition: transform 500ms, box-shadow 400ms;
 }
 .camera:hover{
     transform: scale(1.05);
+    box-shadow: rgb(0, 0, 0) 5px 5px 20px;
+
 }
 
 .cameraOverlay {
