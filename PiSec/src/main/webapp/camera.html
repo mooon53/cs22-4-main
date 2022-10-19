@@ -8,69 +8,46 @@
     <script src="./javaScript/camera.js" defer></script>
 </head>
 <body>
-<div id="navBar">
-    <div id="menuItems">
-        <div class="menuItem">
-            <div class="menuHeader">
-                My Camera
-            </div>
-            <div class="menuSubTitle">
-                3 devices available
-            </div>
-        </div>
-        <div class="menuItem">
-            <div class="menuHeader">
-                Alerts
-            </div>
-            <div class="menuSubTitle">
-                5 new alerts
-            </div>
-        </div>
-    </div>
-    <div id="pp">
-        <img src="images/pp.png" alt="Profile Picture">
-    </div>
-</div>
-<div id="title">
-    Garden
-</div>
-<div id="contentContainer">
-    <div id="cameraContainer">
-        <div id="camera">
-            <img src="images/garden.jpg" alt="garden Livestream">
-        </div>
-        <div id="disable">
-            Get code to disable the camera
-        </div>
-    </div>
-    <div id="notificationContainer">
-        <div class="notification">
-            <div class="notificationInfo">
-                <div class="notificationDate">
-                    18/09/2022
+    <div id="navBar">
+        <div id="menuItems">
+            <div class="menuItem">
+                <div class="menuHeader">
+                    My Camera
                 </div>
-                <div class="notificationTime">
-                    20:33
+                <div class="menuSubTitle">
+                    3 devices available
                 </div>
             </div>
-            <button>
-                PHOTO
-            </button>
-        </div>
-        <div class="notification">
-            <div class="notificationInfo">
-                <div class="notificationDate">
-                    20/09/2022
+            <div class="menuItem">
+                <div class="menuHeader">
+                    Alerts
                 </div>
-                <div class="notificationTime">
-                    06:17
+                <div class="menuSubTitle">
+                    5 new alerts
                 </div>
             </div>
-            <button>
-                PHOTO
-            </button>
+        </div>
+        <div id="pp">
+            <img src="images/pp.png" alt="Profile Picture">
         </div>
     </div>
-</div>
+    <div id="title">
+        Garden
+    </div>
+    <div id="contentContainer">
+        <div id="cameraContainer">
+            <div id="camera">
+                <img id="livestreamPlaceholder" src="" alt="">
+            </div>
+        </div>
+        <div class="notificationContainer">
+            <div class="notificationHeader">Notifications:</div>
+            <div class="notificationsContainer" id="notificationsContainer"></div>
+        </div>
+    </div>
+
+    <div id="disable">
+        Get code to disable the camera
+    </div>
 </body>
 </html>

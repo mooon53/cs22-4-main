@@ -7,19 +7,42 @@ function loadPage(backEndData){
     const urlParameters = getUrlVars();
 
     const currentCamera = cameras[urlParameters['id']];
-    console.log(currentCamera);
-    console.log(cameras);
-    console.log(urlParameters['id']);
-    console.log(urlParameters);
 
     document.title = currentCamera.name;
+    document.getElementById('title').innerText = currentCamera.name;
+    document.getElementById('livestreamPlaceholder').setAttribute('src', `images/${currentCamera.showCaseImage}`);
+    document.getElementById('livestreamPlaceholder').setAttribute('alt', `${currentCamera.name} livestream`);
+
+    // fill the notifications:
+    let notificationsHTML = "";
+    for (const i in currentCamera.notifications){
+        const noti = currentCamera.notifications[i]
+        notificationsHTML += notificationTemplate(noti);
+    }
+    document.getElementById('notificationsContainer').innerHTML = notificationsHTML;
 }
 
 
 function getUrlVars() {
-    var vars = {};
-    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+    const vars = {};
+    const parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
         vars[key] = value;
     });
     return vars;
 }
+
+
+const notificationTemplate = (data) => `
+    <div class="notification">
+        <div class="notificationInfo">
+            <div class="notificationDate">
+                ${data.date.split("T")[0]}
+            </div>
+            <div class="notificationTime">
+                ${data.date.split("T")[1]}
+            </div>
+        </div>
+        <div ${data.type === 'important' ? 'class="importantNoti"' : ''}>
+            ${data.message}
+        </div>
+    </div>`

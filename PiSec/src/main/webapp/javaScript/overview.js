@@ -12,12 +12,12 @@ function loadPage(backEndData){
 
     let camerasHtml = "";
     for (const cameraID in cameras){
-        camerasHtml += helloTemplate(cameras[cameraID]);
+        camerasHtml += cameraItemTemplate(cameras[cameraID]);
     }
     camerasContainer.innerHTML = camerasHtml;
 }
 
-const helloTemplate = (data) => `
+const cameraItemTemplate = (data) => `
   <div class="camera unselectable" style="background-image: url('./images/${data.showCaseImage}')" onclick="location.href='camera.html?id=${data.id}'">
     <div class="cameraOverlay">
         <div class="cameraInfo">
