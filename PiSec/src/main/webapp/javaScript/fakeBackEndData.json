@@ -1,6 +1,6 @@
 {
-  "cameras": {
-    "0" : {
+  "cameras": [
+    {
       "id": 0,
       "name": "Bedroom",
       "isLive": false,
@@ -9,7 +9,7 @@
       ],
       "showCaseImage": "bedRoom.jpeg"
     },
-    "1" : {
+    {
       "id": 1,
       "name": "Office",
       "isLive": true,
@@ -26,7 +26,7 @@
       ],
       "showCaseImage": "office.jpg"
     },
-    "2" : {
+    {
       "id": 2,
       "name": "Living Room",
       "isLive": false,
@@ -34,7 +34,7 @@
       ],
       "showCaseImage": "livingRoom.jpeg"
     },
-    "3" : {
+    {
       "id": 3,
       "name": "Garden",
       "isLive": false,
@@ -42,5 +42,5 @@
       ],
       "showCaseImage": "garden.jpg"
     }
-  }
+  ]
 }

@@ -2,10 +2,16 @@ fetch('./javaScript/fakeBackEndData.json')
     .then((response) => response.json())
     .then((json) => loadPage(json));
 
+fetch('./javaScript/notificationFakeBackEnd.json')
+    .then((response) => response.json())
+    .then((json) => loadNotifications(json));
+
 function loadPage(backEndData){
     console.log(backEndData);
 
     let cameras = backEndData["cameras"];
+
+    document.getElementById('numberOfDevices').innerText = cameras.length;
 
     const camerasContainer = document.getElementById('cameraContainer');
 
@@ -16,6 +22,12 @@ function loadPage(backEndData){
     }
     camerasContainer.innerHTML = camerasHtml;
 }
+
+function loadNotifications(noti){
+    const notifications = noti.notifications;
+    document.getElementById('numberOfAlerts').innerText = notifications.length;
+}
+
 
 const cameraItemTemplate = (data) => `
   <div class="camera unselectable" style="background-image: url('./images/${data.showCaseImage}')" onclick="location.href='camera.html?id=${data.id}'">
