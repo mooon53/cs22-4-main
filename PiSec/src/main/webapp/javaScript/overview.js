@@ -7,15 +7,13 @@ fetch('./javaScript/notificationFakeBackEnd.json')
     .then((json) => loadNotifications(json));
 
 function loadPage(backEndData){
-    console.log(backEndData);
-
     let cameras = backEndData["cameras"];
-
+    
+    // set the number of devices in the nav bar.
     document.getElementById('numberOfDevices').innerText = cameras.length;
 
+    // loads the camera menu items to the document
     const camerasContainer = document.getElementById('cameraContainer');
-
-
     let camerasHtml = "";
     for (const cameraID in cameras){
         camerasHtml += cameraItemTemplate(cameras[cameraID]);
@@ -23,12 +21,13 @@ function loadPage(backEndData){
     camerasContainer.innerHTML = camerasHtml;
 }
 
+// set the total notification amount in the nav bar
 function loadNotifications(noti){
     const notifications = noti.notifications;
     document.getElementById('numberOfAlerts').innerText = notifications.length;
 }
 
-
+// the html template of the camera menu item
 const cameraItemTemplate = (data) => `
   <div class="camera unselectable" style="background-image: url('./images/${data.showCaseImage}')" onclick="location.href='camera.html?id=${data.id}'">
     <div class="cameraOverlay">
