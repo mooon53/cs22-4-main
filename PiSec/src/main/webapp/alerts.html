@@ -7,60 +7,80 @@
   <link rel="stylesheet" type="text/css" href="css/alerts.css">
 </head>
 <body>
-<div id="navBar">
-  <div id="pp">
-    <img src="images/pp.png" alt="Profile Picture">
-  </div>
-  <div id="menuItems">
-    <div class="menuItem">
-      <div class="menuHeader">
-        My Camera
+  <nav class="navBar">
+    <div class="leftNavBar">
+        <div class="hiddenOnMobile navLogo" onclick="location.href='./'">
+            <div class="navItemTitle navLogoTitle"><span class="navLogoPi">π</span>Sec</div>
+        </div>
+        <div class="navItem" onclick="location.href='./'">
+            <div class="navItemTitle">My Devices</div>
+            <div class="navItemSubTitle"><span id="numberOfDevices">4</span> devices available</div>
+        </div>
+        <div class="navItem" onclick="location.href='./alerts.html'">
+            <div class="navItemTitle">Notifications</div>
+            <div class="navItemSubTitle"><span id="numberOfAlerts">2</span> Alerts</div>
+        </div>
+    </div>
+    <div class="rightNavBar">
+        <img class="navProfilePicture" src="images/pp2.png" alt="Profile Picture">
+    </div>
+</nav>
+
+  <!-- <div id="navBar">
+    <div id="pp">
+      <img src="images/pp.png" alt="Profile Picture">
+    </div>
+    <div id="menuItems">
+      <div class="menuItem">
+        <div class="menuHeader">
+          My Camera
+        </div>
+        <div class="menuSubTitle">
+          3 devices available
+        </div>
       </div>
-      <div class="menuSubTitle">
-        3 devices available
+      <div class="menuItem">
+        <div class="menuHeader">
+          Alerts
+        </div>
+        <div class="menuSubTitle">
+          5 new alerts
+        </div>
       </div>
     </div>
-    <div class="menuItem">
-      <div class="menuHeader">
-        Alerts
-      </div>
-      <div class="menuSubTitle">
-        5 new alerts
-      </div>
+  </div> -->
+
+  <div id="alertsContainer">
+    <div class="alert">
+      <p class="alertLoc">Office</p>
+      <p class="alertDate">06/08/2022</p>
+      <p class="alertTime">10:04</p>
+      <button>RECORDING</button>
+    </div>
+    <div class="alert">
+      <p class="alertLoc">Office</p>
+      <p class="alertDate">06/08/2022</p>
+      <p class="alertTime">10:04</p>
+      <button>RECORDING</button>
+    </div>
+    <div class="alert">
+      <p class="alertLoc">Office</p>
+      <p class="alertDate">06/08/2022</p>
+      <p class="alertTime">10:04</p>
+      <button>RECORDING</button>
+    </div>
+    <div class="alert">
+      <p class="alertLoc">Office</p>
+      <p class="alertDate">06/08/2022</p>
+      <p class="alertTime">10:04</p>
+      <button>RECORDING</button>
+    </div>
+    <div class="alert">
+      <p class="alertLoc">Office</p>
+      <p class="alertDate">06/08/2022</p>
+      <p class="alertTime">10:04</p>
+      <button>RECORDING</button>
     </div>
   </div>
-</div>
-<div id="alertsContainer">
-  <div class="alert">
-    <p class="alertLoc">Office</p>
-    <p class="alertDate">06/08/2022</p>
-    <p class="alertTime">10:04</p>
-    <button>RECORDING</button>
-  </div>
-  <div class="alert">
-    <p class="alertLoc">Office</p>
-    <p class="alertDate">06/08/2022</p>
-    <p class="alertTime">10:04</p>
-    <button>RECORDING</button>
-  </div>
-  <div class="alert">
-    <p class="alertLoc">Office</p>
-    <p class="alertDate">06/08/2022</p>
-    <p class="alertTime">10:04</p>
-    <button>RECORDING</button>
-  </div>
-  <div class="alert">
-    <p class="alertLoc">Office</p>
-    <p class="alertDate">06/08/2022</p>
-    <p class="alertTime">10:04</p>
-    <button>RECORDING</button>
-  </div>
-  <div class="alert">
-    <p class="alertLoc">Office</p>
-    <p class="alertDate">06/08/2022</p>
-    <p class="alertTime">10:04</p>
-    <button>RECORDING</button>
-  </div>
-</div>
 </body>
 </html>

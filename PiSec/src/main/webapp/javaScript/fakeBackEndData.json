@@ -1,0 +1,46 @@
+{
+  "cameras": [
+    {
+      "id": 0,
+      "name": "Bedroom",
+      "isLive": false,
+      "notifications": [
+
+      ],
+      "showCaseImage": "bedRoom.jpeg"
+    },
+    {
+      "id": 1,
+      "name": "Office",
+      "isLive": true,
+      "notifications": [
+        {
+          "type" : "important",
+          "message": "An intruder has been detected",
+          "date": "19-10-2022T12:50"
+        }, {
+          "type" : "motion",
+          "message": "Motion detected",
+          "date": "18-10-2022T18:50"
+        }
+      ],
+      "showCaseImage": "office.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Living Room",
+      "isLive": false,
+      "notifications": [
+      ],
+      "showCaseImage": "livingRoom.jpeg"
+    },
+    {
+      "id": 3,
+      "name": "Garden",
+      "isLive": false,
+      "notifications": [
+      ],
+      "showCaseImage": "garden.jpg"
+    }
+  ]
+}
