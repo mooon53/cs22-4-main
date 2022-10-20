@@ -2,7 +2,7 @@ import datetime
 
 import RPi.GPIO as GPIO
 import os
-import time
+from time import sleep
 
 import sqlite3
 from sqlite3 import Error
@@ -20,7 +20,6 @@ def create_connection(db_file):
 
 def create_alert_record(conn, alert):
     """create new record in alert table"""
-
     sql = "INSERT INTO alert(date, time, recording) VALUES (?, ?, ?)"
 
     cur = conn.cursor()
@@ -30,7 +29,6 @@ def create_alert_record(conn, alert):
 
 def alert(date, time , path):
     database = r"PiSec.db"
-
     # create a database connection
     conn = create_connection(database)
     with conn:
@@ -51,7 +49,7 @@ GPIO.setup(led, GPIO.OUT)
 
 try:
     print('Ready')
-    time.sleep(30)
+    sleep(30)
     print('Set up')
     value = GPIO.input(sensor)
     while True:
@@ -67,12 +65,12 @@ try:
             os.system('libcamera-jpeg -o '+ path)
             print('Motion')
             alert(date, time, path)
-            time.sleep(10) #change to 30s when implement recording
+            sleep(10) #change to 30s when implement recording
         else:
             GPIO.output(led, GPIO.LOW)
-            time.sleep(2)
+            sleep(2)
             print('No motion')
-        time.sleep(3)
+        sleep(3)
         value = GPIO.input(sensor)
 except KeyboardInterrupt:
     print('Quit')
