@@ -9,3 +9,7 @@
 
 /PiSec/.idea/
 /PiSec/target/
+
+.idea/
+
+.DS_Store
