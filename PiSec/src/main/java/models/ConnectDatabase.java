@@ -57,8 +57,8 @@ public class ConnectDatabase {
 
         String alert = "CREATE TABLE IF NOT EXISTS alert (\n"
                 + " aid bigint PRIMARY KEY,\n"
-                + " date date NOT NULL,\n"
-                + " camera text NOT NULL,\n"
+                + " date text NOT NULL,\n"
+                + " time text NOT NULL,\n"
                 + " recording text\n"
                 + ");";
 
