@@ -6,7 +6,7 @@ import java.sql.*;
 public class ConnectDatabase {
     private String fileName;
     //TODO: replace the link
-    private String url = "jdbc:sqlite:C:/sqlite/";
+    private String url = "jdbc:sqlite:~/DataBase/PiSec.db";
 
     public ConnectDatabase(String fileName){
         this.fileName=fileName;
@@ -15,11 +15,10 @@ public class ConnectDatabase {
     public void connect() {
         Connection connection = null;
         try {
-            String sql = url+"PiSec.db";
-            connection = DriverManager.getConnection(sql);
+            connection = DriverManager.getConnection(url);
             System.out.println("SQL connection established!");
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         } finally {
             try {
                 if (connection != null) {
