@@ -2,167 +2,35 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>PiSec</title>
     <link rel="stylesheet" type="text/css" href="css/global.css">
     <link rel="stylesheet" type="text/css" href="css/index.css">
+
+    <script src="javaScript/overview.js" defer></script>
 </head>
 <body>
-<div id="navBar">
-    <div id="menuItems">
-        <div class="menuItem">
-            <div class="menuHeader">
-                My Camera
+    <nav class="navBar">
+        <div class="leftNavBar">
+            <div class="hiddenOnMobile navLogo" onclick="location.href='./'">
+                <div class="navItemTitle navLogoTitle"><span class="navLogoPi">π</span>Sec</div>
             </div>
-            <div class="menuSubTitle">
-                3 devices available
+            <div class="navItem" onclick="location.href='./'">
+                <div class="navItemTitle">My Devices</div>
+                <div class="navItemSubTitle"><span id="numberOfDevices">0</span> devices available</div>
             </div>
-        </div>
-        <div class="menuItem">
-            <div class="menuHeader">
-                Alerts
-            </div>
-            <div class="menuSubTitle">
-                5 new alerts
+            <div class="navItem" onclick="location.href='./alerts.html'">
+                <div class="navItemTitle">Notifications</div>
+                <div class="navItemSubTitle"><span id="numberOfAlerts">0</span> Alerts</div>
             </div>
         </div>
-    </div>
-    <div id="pp">
-        <img src="images/pp.png" alt="Profile Picture">
-    </div>
-</div>
-<div id="cameraContainer">
-    <div class="camera unselectable" style="background-image: url('images/bedRoom.jpeg')">
-        <div class="cameraOverlay">
-            <div class="cameraInfo">
-                <div class="cameraTextContainer">
-                    <div class="cameraTitle">Bedroom</div>
-                    <div class="status">
-                        <div class="liveStatusIcon">
-                            <svg>
-                                <circle cx="8" cy="8" r="8" fill="#5BB318"/>
-                            </svg>
-                        </div>
-                        <div class="cameraLiveStatus">LIVE</div>
-                    </div>
-                </div>
-                <div class="notificationIcon">
-                    <svg>
-                        <circle cx="27" cy="27" r="27" fill="#FF7F3F"/>
-                        <text x="28" y="41" fill="#E8ECF1">2</text>
-                    </svg>
-                </div>
-            </div>
-            <div class="cameraButtonsContainer">
-                <div class="cameraButtons">
-                    <div class="cameraButton">
-                        <img src="icons/bellWithNotification.svg" alt="bell">
-                    </div>
-                    <div class="cameraButton">
-                        <img src="icons/play.svg" alt="full screen">
-                    </div>
-                </div>
-            </div>
+        <div class="rightNavBar">
+            <img class="navProfilePicture" src="images/pp2.png" alt="Profile Picture">
         </div>
-    </div>
-    <div class="camera unselectable" style="background-image: url('images/office.jpg')" onclick="location.href='camera.html?id=0;'">
-        <div class="cameraOverlay">
-            <div class="cameraInfo">
-                <div class="cameraTextContainer">
-                    <div class="cameraTitle">Office</div>
-                    <div class="status">
-                        <div class="liveStatusIcon">
-                            <svg>
-                                <circle cx="8" cy="8" r="8" fill="#5BB318"/>
-                            </svg>
-                        </div>
-                        <div class="cameraLiveStatus">LIVE</div>
-                    </div>
-                </div>
-                <div class="notificationIcon">
-                    <svg>
-                        <circle cx="27" cy="27" r="27" fill="#FF7F3F"/>
-                        <text x="28" y="41" fill="#E8ECF1">1</text>
-                    </svg>
-                </div>
-            </div>
-            <div class="cameraButtonsContainer">
-                <div class="cameraButtons">
-                    <div class="cameraButton">
-                        <img src="icons/bellWithNotification.svg" alt="bell">
-                    </div>
-                    <div class="cameraButton">
-                        <img src="icons/play.svg" alt="full screen">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="camera unselectable" style="background-image: url('images/livingRoom.jpeg')">
-        <div class="cameraOverlay">
-            <div class="cameraInfo">
-                <div class="cameraTextContainer">
-                    <div class="cameraTitle">Living Room</div>
-                    <div class="status">
-                        <div class="liveStatusIcon">
-                            <svg>
-                                <circle cx="8" cy="8" r="8" fill="#5BB318"/>
-                            </svg>
-                        </div>
-                        <div class="cameraLiveStatus">LIVE</div>
-                    </div>
-                </div>
-                <div class="notificationIcon">
-                    <svg>
-                        <circle cx="27" cy="27" r="27" fill="#1478F6"/>
-                        <text x="28" y="41" fill="#E8ECF1">0</text>
-                    </svg>
-                </div>
-            </div>
-            <div class="cameraButtonsContainer">
-                <div class="cameraButtons">
-                    <div class="cameraButton">
-                        <img src="icons/bell.svg" alt="bell">
-                    </div>
-                    <div class="cameraButton">
-                        <img src="icons/play.svg" alt="full screen">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="camera unselectable" style="background-image: url('images/garden.jpg')">
-        <div class="cameraOverlay">
-            <div class="cameraInfo">
-                <div class="cameraTextContainer">
-                    <div class="cameraTitle">Garden</div>
-                    <div class="status">
-                        <div class="liveStatusIcon">
-                            <svg>
-                                <circle cx="8" cy="8" r="8" fill="#5BB318"/>
-                            </svg>
-                        </div>
-                        <div class="cameraLiveStatus">LIVE</div>
-                    </div>
-                </div>
-                <div class="notificationIcon">
-                    <svg>
-                        <circle cx="27" cy="27" r="27" fill="#FF7F3F"/>
-                        <text x="28" y="41" fill="#E8ECF1">2</text>
-                    </svg>
-                </div>
-            </div>
-            <div class="cameraButtonsContainer">
-                <div class="cameraButtons">
-                    <div class="cameraButton">
-                        <img src="icons/bellWithNotification.svg" alt="bell">
-                    </div>
-                    <div class="cameraButton">
-                        <img src="icons/play.svg" alt="full screen">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+    </nav>
+
+    <div id="cameraContainer"></div>
 </body>
 </html>

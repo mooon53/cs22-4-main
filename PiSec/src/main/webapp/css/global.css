@@ -5,14 +5,95 @@
 }
 
 body {
-    height: 100vh;
     width: 100vw;
-    display: flex;
-    flex-direction: column;
-    align-content: flex-start;
+    overflow-x: hidden;
 }
 
-#navBar {
+/* Nav bar */
+.navBar{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+
+    height: 90px;
+    width: 100vw;
+    margin-bottom: 25px;
+    background-color: rgb(72, 77, 92);
+
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 0;
+
+    z-index: 10;
+
+    -webkit-box-shadow: 3px 3px 10px 3px #272727;
+    -moz-box-shadow: 3px 3px 10px 3px #272727;
+    box-shadow: 3px 3px 10px 3px #272727;
+}
+.leftNavBar{
+    flex: 1 0 auto;
+    height: 90px;
+    max-width: 550px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.rightNavBar{
+    display: flex;
+
+    flex-direction: column;
+    justify-content: center;
+
+    margin: 0 min(30px, 3vw);
+    height: 90px;    
+}
+.navProfilePicture{
+    height: 60px;
+}
+
+.navItem{
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    padding: 5px 10px;
+
+    transition: transform 500ms, box-shadow 500ms;
+}
+.navItem:hover{
+    transform: translateY(-4px);
+    box-shadow: 3px 3px 8px 1px #000000;
+}
+.navItemTitle{
+    color: white;
+    font-weight: bold;
+    font-size: min(5vw, 1.5rem);
+}
+.navItemSubTitle{
+    color: white;
+    font-size: min(3vw, 1rem);
+}
+.navLogo{
+    cursor: pointer;
+    margin-left: 15px;
+}
+.navLogoTitle{
+    font-size: min(7vw, 2.5rem);
+}
+.navLogoPi{
+    font-family: 'Arial', 'Britannic Bold';
+    font-size: min(10vw, 4rem);
+}
+
+@media (max-width: 600px) {
+    .hiddenOnMobile{
+        display: none;
+    }
+    .leftNavBar{
+        justify-content: space-evenly;
+    }
+}
+/* old nav bar: */
+/* #navBar {
     width: 100vw;
     display: flex;
     justify-content: space-between;
@@ -59,7 +140,7 @@ body {
     margin-right: 40px;
     margin-top: 40px;
     margin-left: 40px;
-}
+} */
 
 .unselectable {
     -webkit-touch-callout: none;
