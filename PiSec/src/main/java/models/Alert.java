@@ -4,22 +4,21 @@ import java.util.Date;
 
 public class Alert {
 	private long alertId;
-	private Date dateTime;
+	private String dateTime;
 	private long recordId;
+	private String recording;
 
-	public Alert(long alertId, Date dateTime, long recordId) {
+	public Alert(long alertId, String dateTime, String recording) {
 		this.alertId = alertId;
 		this.dateTime = dateTime;
-		this.recordId = recordId;
+		this.recording = recording;
 	}
 
 	public long getAlertId() {return alertId;}
 
 	public void setAlertId(long alertId) {this.alertId = alertId;}
 
-	public Date getDateTime() {return dateTime;}
-
-	public void setDateTime(Date dateTime) {this.dateTime = dateTime;}
+	public String getDateTime() {return dateTime;}
 
 	public long getRecordId() {return recordId;}
 

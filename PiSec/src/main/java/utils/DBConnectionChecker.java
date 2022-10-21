@@ -7,18 +7,20 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class DBConnectionChecker implements Runnable {
-    private Connection connection;
+public class DBConnectionChecker extends Thread {
     private final String URL;
     private final long WAIT = 60000;
+
+    private Connection connection;
 
     public DBConnectionChecker(Connection connection, String url) {
         this.connection = connection;
         this.URL = url;
     }
 
+    @Override
     public void run() {
-        while (true) {
+        while (!this.isInterrupted()) {
             try {
                 Thread.sleep(WAIT);
                 if (connection.isClosed()) {

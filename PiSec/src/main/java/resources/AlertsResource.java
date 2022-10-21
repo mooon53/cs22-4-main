@@ -11,26 +11,22 @@ import jakarta.ws.rs.core.*;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.RetentionPolicy;
+import java.util.ArrayList;
 import java.util.List;
 
 import static dao.SessionHolder.INSTANCE;
 
 @Path("/alerts")
 public class AlertsResource {
-	@Context
-	UriInfo uriInfo;
-	@Context
-	Request request;
-
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<String> getAlerts(@HeaderParam("sessionId") String sessionId) {
-//		try {
-//			Session session = INSTANCE.getSession(sessionId);
-//		} catch (SessionException e) {
-//			// return error 401, unauthorized with message to please try log in again
-//			return null;
-//		}
-		return DatabaseAccess.getAlerts();
+	public List<Alert> getAlerts(@HeaderParam("sessionId") String sessionId) {
+		if (INSTANCE.sessionIsValid(sessionId)) return DatabaseAccess.getAlerts();
+		else return new ArrayList<>();
+	}
+
+	@Path("{id}")
+	public AlertResource getAlert(@HeaderParam("sessionId") String sessionId, @PathParam("id") String alertId) {
+		return new AlertResource(sessionId, alertId);
 	}
 }

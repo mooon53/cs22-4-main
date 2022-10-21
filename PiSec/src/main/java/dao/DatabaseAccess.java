@@ -40,18 +40,39 @@ public class DatabaseAccess {
 		statement = newStatement;
 	}
 
-	public static List<String> getAlerts() {
-		ArrayList<String> alerts = new ArrayList<>();
-		String query = "SELECT *\n" + //TODO: fix sql
+	public static List<Alert> getAlerts() {
+		ArrayList<Alert> alerts = new ArrayList<>();
+		String query = "SELECT *\n" +
 				"FROM alert\n;";
 		try {
 			ResultSet resultSet = statement.executeQuery(query);
 			while (resultSet.next()) {
-				alerts.add(resultSet.getString(1));
+				int aid = resultSet.getInt("aid");
+				String date = resultSet.getString("date");
+				String recording = resultSet.getString("recording");
+				alerts.add(new Alert(aid, date, recording));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return alerts;
+	}
+
+	public static Alert getAlert(Long alertId) {
+		String query = "SELECT *\n" +
+				"FROM alert\n" +
+				"WHERE aid =" + alertId.toString() + ";";
+		Alert alert = null;
+		try {
+			ResultSet resultSet = statement.executeQuery(query);
+			resultSet.next();
+			int aid = resultSet.getInt("aid");
+			String date = resultSet.getString("date");
+			String recording = resultSet.getString("recording");
+			alert = new Alert(aid, date, recording);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return alert;
 	}
 }

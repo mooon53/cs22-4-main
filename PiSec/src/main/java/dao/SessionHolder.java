@@ -13,7 +13,7 @@ import java.util.Random;
 public enum SessionHolder {
 	INSTANCE;
 
-	static final HashMap<Long, Session> sessions = new HashMap<>();
+	static final HashMap<String, Session> sessions = new HashMap<>();
 
 	/**
 	 * Returns the Session object if it exists, otherwise throws an Exception
@@ -21,7 +21,7 @@ public enum SessionHolder {
 	 * @return The Session
 	 * @throws SessionException If the session does not exist or is expired
 	 */
-	public Session getSession(Long sessionId) throws SessionException {
+	public Session getSession(String sessionId) throws SessionException {
 		if (!sessions.containsKey(sessionId) || sessions.get(sessionId) == null) {
 			throw new SessionException("This session does not exist");
 		}
@@ -29,14 +29,20 @@ public enum SessionHolder {
 		return sessions.get(sessionId);
 	}
 
+	public boolean sessionIsValid(String sessionId) {
+//		if (!sessions.containsKey(sessionId) || sessions.get(sessionId) == null) return false;
+//		return !sessions.get(sessionId).expired();
+		return true; // TODO: remove this when testing is done, Temporary for testing
+	}
+
 	public Session addSession() {
 		Random random = new Random();
-		Long sessionId = null;
+		String sessionId = null;
 		Session session = null;
 		while (!sessions.containsKey(sessionId)) {
-			sessionId = random.nextLong();
+			sessionId = ((Long) random.nextLong()).toString();
 			session = new Session(new Date(), sessionId);
-			sessions.put(sessionId, session);
+			sessions.put(sessionId.toString(), session);
 			try {
 			Thread.sleep(1000);
 			} catch (InterruptedException e) {
