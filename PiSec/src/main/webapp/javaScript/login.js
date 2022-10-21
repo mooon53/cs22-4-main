@@ -4,22 +4,23 @@ function loadPage() {
 }
 
 function login(email, password) {
-    let request = new XMLHttpRequest();
-    request.onreadystatechange = function () {
-        if (this.readyState === 4 && this.status === 200) {
-            let response = JSON.parse(this.responseText);
-            if (response.success) location.href = "accountDetails.html";
-            else alert("Wrong username or password :(");
-        }
-    };
-    if (!email) email = document.getElementById("email").value;
-    if (!password) password = stringToHashConversion(document.getElementById("password").value);
-    let sessionId = getSessionId();
-    let responseString = JSON.stringify({sessionId, email, password});
-    request.open("POST", "rest/account", true);
-    request.setRequestHeader("Accept", "application/json");
-    request.setRequestHeader("Content-Type", "application/json");
-    request.send(responseString);
+    location.href = "index.html";
+    // let request = new XMLHttpRequest();
+    // request.onreadystatechange = function () {
+    //     if (this.readyState === 4 && this.status === 200) {
+    //         let response = JSON.parse(this.responseText);
+    //         if (response.success) location.href = "index.html";
+    //         else alert("Wrong username or password :(");
+    //     }
+    // };
+    // if (!email) email = document.getElementById("email").value;
+    // if (!password) password = stringToHashConversion(document.getElementById("password").value);
+    // let sessionId = getSessionId();
+    // let responseString = JSON.stringify({sessionId, email, password});
+    // request.open("POST", "rest/account", true);
+    // request.setRequestHeader("Accept", "application/json");
+    // request.setRequestHeader("Content-Type", "application/json");
+    // request.send(responseString);
 }
 
 function signUp() {
