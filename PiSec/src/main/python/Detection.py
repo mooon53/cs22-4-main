@@ -7,8 +7,8 @@ from time import sleep
 import sqlite3
 from sqlite3 import Error
 
-from src.main.python.Email import send_email
-from src.main.python.WhatsAppMessage import send_whatsapp
+from Email import send_email
+from WhatsAppMessage import send_whatsapp
 
 
 def create_connection(db_file):
