@@ -3,10 +3,7 @@ package dao;
 import models.Alert;
 import utils.DBConnectionChecker;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,13 +12,14 @@ Gets data from the database and transforms it into a format that is easier to us
  */
 public class DatabaseAccess {
 	private static Statement statement;
-	private static final String URL = "jdbc:sqlite:~/DataBase/PiSec.db";
+	private static final String URL = "jdbc:sqlite:/Users/tice/python/PiSec.db";
 
 	static {
 		boolean connected = false;
 		Connection connection = null;
 		while (!connected) {
 			try {
+				DriverManager.registerDriver(new org.sqlite.JDBC());
 				connection = DriverManager.getConnection(URL);
 				statement = connection.createStatement();
 				System.out.println("SQL connection established!");
@@ -42,7 +40,18 @@ public class DatabaseAccess {
 		statement = newStatement;
 	}
 
-	public static List<Alert> getAlerts() {
-		return new ArrayList<>();
+	public static List<String> getAlerts() {
+		ArrayList<String> alerts = new ArrayList<>();
+		String query = "SELECT *\n" + //TODO: fix sql
+				"FROM alert\n;";
+		try {
+			ResultSet resultSet = statement.executeQuery(query);
+			while (resultSet.next()) {
+				alerts.add(resultSet.getString(1));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return alerts;
 	}
 }

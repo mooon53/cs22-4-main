@@ -7,6 +7,10 @@ from time import sleep
 import sqlite3
 from sqlite3 import Error
 
+from Email import send_email
+from WhatsAppMessage import send_whatsapp
+
+
 def create_connection(db_file):
     """"create database connection"""
     conn = None
@@ -64,6 +68,8 @@ try:
             path = '~/Pictures/' + dateTime.replace(" ", "_") + '.jpg'
             os.system('libcamera-jpeg -o '+ path)
             print('Motion')
+            send_whatsapp(31637171525)
+            send_email("t.frauenfelder@student.utwente.nl")
             alert(date, time, path)
             sleep(10) #change to 30s when implement recording
         else:

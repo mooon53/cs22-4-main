@@ -27,4 +27,4 @@ def send_whatsapp(x):
     #data = '{ "messaging_product": "whatsapp", "to": "31623171402", "type": "template", "template": { "name": "alert", "language": { "code": "en_US" } } }'
     #response = requests.post('https://graph.facebook.com/v14.0/105193312386949/messages', headers=headers, data=data)
 
-send_whatsapp(31623171402)
+#send_whatsapp(31623171402)

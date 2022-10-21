@@ -24,7 +24,7 @@ public class AlertsResource {
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Alert> getAlerts(@HeaderParam("sessionId") String sessionId) {
+	public List<String> getAlerts(@HeaderParam("sessionId") String sessionId) {
 //		try {
 //			Session session = INSTANCE.getSession(sessionId);
 //		} catch (SessionException e) {

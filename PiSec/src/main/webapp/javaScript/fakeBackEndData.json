@@ -17,8 +17,7 @@
         {
           "type" : "important",
           "message": "An intruder has been detected",
-          "date": "19-10-2022T12:50"
-        }, {
+          "date": "19-10-2022T12:5
           "type" : "motion",
           "message": "Motion detected",
           "date": "18-10-2022T18:50"
