@@ -3,6 +3,7 @@ package dao;
 import exceptions.SessionException;
 import models.Session;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -28,11 +29,13 @@ public enum SessionHolder {
 		return sessions.get(sessionId);
 	}
 
-	public Long addSession(Session session) {
+	public Session addSession() {
 		Random random = new Random();
 		Long sessionId = null;
+		Session session = null;
 		while (!sessions.containsKey(sessionId)) {
 			sessionId = random.nextLong();
+			session = new Session(new Date(), sessionId);
 			sessions.put(sessionId, session);
 			try {
 			Thread.sleep(1000);
@@ -40,6 +43,6 @@ public enum SessionHolder {
 				e.printStackTrace();
 			}
 		}
-		return sessionId;
+		return session;
 	}
 }

@@ -12,10 +12,9 @@ import java.util.Date;
 @Path("sessions")
 public class SessionResource {
 	@GET
-	@Produces(MediaType.TEXT_PLAIN)
-	public Long newSession() {
-		Session session = new Session(new Date());
-		return INSTANCE.addSession(session);
+	@Produces(MediaType.APPLICATION_JSON)
+	public Session newSession() {
+		return INSTANCE.addSession();
 	}
 
 
