@@ -22,14 +22,20 @@ public enum SessionHolder {
 	 * @throws SessionException If the session does not exist or is expired
 	 */
 	public Session getSession(String sessionId) {
-		if (sessionIsValid(sessionId)) return sessions.get(sessionId);
+		if (sessionExists(sessionId)) return sessions.get(sessionId);
 		return null;
 	}
 
-	public boolean sessionIsValid(String sessionId) {
+	public boolean sessionExists(String sessionId) {
 //		if (!sessions.containsKey(sessionId) || sessions.get(sessionId) == null) return false;
 //		return !sessions.get(sessionId).expired();
 		return true; // TODO: remove this when testing is done, Temporary for testing
+	}
+
+	public boolean sessionLoggedIn(String sessionId, String account) {
+		if (!sessionExists(sessionId)) return false;
+		Session session = sessions.get(sessionId);
+		return session.getAccount().equals(account);
 	}
 
 	public Session addSession() {

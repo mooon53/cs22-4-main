@@ -8,7 +8,7 @@ import java.util.Date;
 public class Session {
 	private final String sessionId;
 	private final Date expiry;
-	String account;
+	private String account;
 
 	public Session(Date date, String sessionId) {
 		this(date, sessionId, null);
@@ -26,9 +26,7 @@ public class Session {
 	 */
 	public boolean expired() {return expiry.getTime() < new Date().getTime();}
 
-	public void login(String username) {
-		System.out.println("Session: " + username);
-		this.account = username;}
+	public void login(String username) {this.account = username;}
 
 	public String getSessionId() {
 		return sessionId;

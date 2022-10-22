@@ -20,7 +20,7 @@ public class AlertResource {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public Alert getAlert() {
-		if (INSTANCE.sessionIsValid(sessionId)) {
+		if (INSTANCE.sessionExists(sessionId)) {
 			return DatabaseAccess.getAlert(alertId);
 		} else return null;
 	}

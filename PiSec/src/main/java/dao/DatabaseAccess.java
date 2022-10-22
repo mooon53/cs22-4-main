@@ -1,5 +1,6 @@
 package dao;
 
+import models.Account;
 import models.Alert;
 import utils.DBConnectionChecker;
 
@@ -34,7 +35,9 @@ public class DatabaseAccess {
 		thread.start();
 	}
 
-	private DatabaseAccess() {throw new IllegalStateException("This class should not be instantiated");}
+	private DatabaseAccess() {
+		throw new IllegalStateException("This class should not be instantiated");
+	}
 
 	public static void replaceStatement(Statement newStatement) {
 		statement = newStatement;
@@ -77,14 +80,23 @@ public class DatabaseAccess {
 	}
 
 	public static void addAccount(String username, String password) throws SQLException {
-		System.out.println(username);
-		System.out.println(password);
 		String query = "INSERT INTO user(login, password)\n" +
-				"VALUES ('" + username + "', '" + password +"');";
+				"VALUES ('" + username + "', '" + password + "');";
+		statement.executeUpdate(query);
+	}
+
+	public static Account getAccount(String username) {
+		String query = "SELECT login, password\n" +
+				"FROM user\n" +
+				"WHERE login = '" + username + "';";
+		Account account = null;
 		try {
-			statement.executeQuery(query);
+			ResultSet resultSet = statement.executeQuery(query);
+			resultSet.next();
+			account = new Account(resultSet.getString("login"), resultSet.getString("password"));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return account;
 	}
 }

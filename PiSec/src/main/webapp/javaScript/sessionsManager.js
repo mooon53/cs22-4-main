@@ -1,9 +1,25 @@
-// const requestUrl = new URL(location.href).origin + "/rest/";
-
 function checkSession() {
 	let cookieMap = getCookies();
 	if (!cookieMap.has("sessionId") || cookieMap.get("sessionExpires") < new Date().getTime()) newSession();
-	if (!cookieMap.loggedIn && !location.href.endsWith("login2.html")) /*location.href = "login.html"*/ console.log("you are not logged in, in the future this will redirect");
+	if (!cookieMap.get("loggedIn") && !location.href.endsWith("login2.html")) /*location.href = "login.html"*/ console.log("you are not logged in, in the future this will redirect");
+}
+
+function checkSessionServer() {
+	const sessionId = getSessionId();
+	let request = new XMLHttpRequest();
+	request.onreadystatechange = function() {
+		if (this.readyState === 4 && this.status === 200) {
+			const response = JSON.parse(this.responseText);
+			document.cookie = `sessionId=${response.sessionId};expires=${new Date(response.expiration).toUTCString()};`;
+			document.cookie = `sessionExpires=${response.expiration};expires=${new Date(response.expiration).toUTCString()};`;
+			document.cookie = `loggedIn=${response.loggedIn};expires=${new Date(response.expiration).toUTCString()};`;
+			if (response.loggedIn) document.cookie = `account=${response.account};expires=${new Date(response.expiration).toUTCString()};`;
+		} else newSession();
+	}
+	request.open("GET", "/rest/sessions", false);
+	request.setRequestHeader("Accept", "application/json");
+	request.setRequestHeader("sessionId", sessionId);
+	request.send();
 }
 
 function newSession() {
@@ -12,12 +28,12 @@ function newSession() {
 		if (this.readyState === 4 && this.status === 200) {
 			let response = JSON.parse(this.responseText);
 			document.cookie = `sessionId=${response.sessionId};expires=${new Date(response.expiration).toUTCString()};`;
-			document.cookie = `sessionExpires=${response.expiration};`;
-			document.cookie = `loggedIn=${response.loggedIn};`;
-			if (response.loggedIn) document.cookie = `account=${response.account};`;
+			document.cookie = `sessionExpires=${response.expiration};expires=${new Date(response.expiration).toUTCString()};`;
+			document.cookie = `loggedIn=${response.loggedIn};expires=${new Date(response.expiration).toUTCString()};`;
+			if (response.loggedIn) document.cookie = `account=${response.account};expires=${new Date(response.expiration).toUTCString()};`;
 		}
 	}
-	request.open("GET", "/rest/sessions", false);
+	request.open("PUT", "/rest/sessions", false);
 	request.setRequestHeader("Accept", "application/json");
 	request.send();
 }
