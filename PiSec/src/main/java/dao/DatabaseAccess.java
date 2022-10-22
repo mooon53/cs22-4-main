@@ -75,4 +75,16 @@ public class DatabaseAccess {
 		}
 		return alert;
 	}
+
+	public static void addAccount(String username, String password) throws SQLException {
+		System.out.println(username);
+		System.out.println(password);
+		String query = "INSERT INTO user(login, password)\n" +
+				"VALUES ('" + username + "', '" + password +"');";
+		try {
+			statement.executeQuery(query);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }

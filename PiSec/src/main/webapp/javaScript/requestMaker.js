@@ -4,6 +4,7 @@
  */
 function makeRequest() {
 	let request = new XMLHttpRequest();
+	request.open("GET", "/")
 	request.setRequestHeader("sessionId", getSessionId());
 	return request
 }

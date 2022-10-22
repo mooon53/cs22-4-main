@@ -4,9 +4,28 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <script src="javaScript/sessionsManager.js"></script>
+    <script src="javaScript/passwordUtils.js"></script>
+    <script src="javaScript/requestMaker.js"></script>
+    <script src="javaScript/signUp.js"></script>
+    <script src="javaScript/login2.js"></script>
 </head>
-<body>
+<body onload="checkSession()">
 You are not logged in, this will be the login page
-<input>
+<br>
+<label for="username"> Username:</label>
+<input type="text" id="username">
+<br>
+<label for="password">Password:</label>
+<input type="password" id="password">
+<br>
+<button onclick="signUp()">sign up</button>
+<br>
+<label for="username"> Username:</label>
+<input type="text" id="usernameLogIn">
+<br>
+<label for="password">Password:</label>
+<input type="password" id="passwordLogIn">
+<br>
+<button onclick="signUp()">log in</button>
 </body>
 </html>

@@ -26,6 +26,10 @@ public class Session {
 	 */
 	public boolean expired() {return expiry.getTime() < new Date().getTime();}
 
+	public void login(String username) {
+		System.out.println("Session: " + username);
+		this.account = username;}
+
 	public String getSessionId() {
 		return sessionId;
 	}

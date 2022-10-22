@@ -21,12 +21,9 @@ public enum SessionHolder {
 	 * @return The Session
 	 * @throws SessionException If the session does not exist or is expired
 	 */
-	public Session getSession(String sessionId) throws SessionException {
-		if (!sessions.containsKey(sessionId) || sessions.get(sessionId) == null) {
-			throw new SessionException("This session does not exist");
-		}
-		if (sessions.get(sessionId).expired()) throw new SessionException("This session has expired");
-		return sessions.get(sessionId);
+	public Session getSession(String sessionId) {
+		if (sessionIsValid(sessionId)) return sessions.get(sessionId);
+		return null;
 	}
 
 	public boolean sessionIsValid(String sessionId) {

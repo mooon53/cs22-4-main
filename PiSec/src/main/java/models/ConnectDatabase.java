@@ -50,8 +50,8 @@ public class ConnectDatabase {
 
         String createUser = "CREATE TABLE IF NOT EXISTS user (\n"
                 + " uid bigint PRIMARY KEY,\n"
-                + " login text NOT NULL,\n"
-                + " password text\n"
+                + " login text UNIQUE NOT NULL,\n"
+                + " password text NOT NULL\n"
                 + ");";
 
         String alert = "CREATE TABLE IF NOT EXISTS alert (\n"

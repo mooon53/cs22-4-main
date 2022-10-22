@@ -3,7 +3,7 @@
 function checkSession() {
 	let cookieMap = getCookies();
 	if (!cookieMap.has("sessionId") || cookieMap.get("sessionExpires") < new Date().getTime()) newSession();
-	if (!cookieMap.loggedIn) /*location.href = "login.html"*/ console.log("you are not logged in, in the future this will redirect");
+	if (!cookieMap.loggedIn && !location.href.endsWith("login2.html")) /*location.href = "login.html"*/ console.log("you are not logged in, in the future this will redirect");
 }
 
 function newSession() {
