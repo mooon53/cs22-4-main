@@ -3,24 +3,23 @@ package models;
 import java.util.Date;
 
 public class Alert {
-	private long alertId;
+	private long camId;
+	private String message;
+	private String type;
 	private String dateTime;
-	private long recordId;
-	private String recording;
+	private String recordingPath;
 
-	public Alert(long alertId, String dateTime, String recording) {
-		this.alertId = alertId;
+	public Alert(String dateTime, String recording) {
+		this.camId = 0L;
+		this.message = "";
+		this.type = "motion";
 		this.dateTime = dateTime;
-		this.recording = recording;
+		this.recordingPath = recording;
 	}
 
-	public long getAlertId() {return alertId;}
-
-	public void setAlertId(long alertId) {this.alertId = alertId;}
-
-	public String getDateTime() {return dateTime;}
-
-	public long getRecordId() {return recordId;}
-
-	public void setRecordId(long recordId) {this.recordId = recordId;}
+	public Long getFromId() {return camId;}
+	public String getDate() {return dateTime;}
+	public String getType() {return type;}
+	public String getMessage() {return message;}
+	public String getRecordingPath() {return recordingPath;}
 }

@@ -11,7 +11,7 @@ import java.util.List;
 
 import static dao.SessionHolder.INSTANCE;
 
-@Path("/alerts")
+@Path("alerts")
 public class AlertsResource {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
