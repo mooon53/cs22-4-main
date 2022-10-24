@@ -16,7 +16,7 @@ function loadPage(backEndData){
     // set the number of devices in the nav bar.
     document.getElementById('numberOfDevices').innerText = cameras.length;
 
-    // if the the page of this camera doesn't exist quit. maybe later show error message
+    // if the page of this camera doesn't exist quit. maybe later show error message
     if (currentCamera === undefined) {
         console.log("this camera doesn't exist");
         return;
