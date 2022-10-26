@@ -1,6 +1,6 @@
 function signUp() {
-	const username = document.getElementById("username").value;
-	const password = preparePassword(document.getElementById("password").value);
+	const username = document.getElementById("signupName").value;
+	const password = preparePassword(document.getElementById("signupPassword").value);
 	const content = JSON.stringify({username, password});
 	let request = new XMLHttpRequest();
 	request.onreadystatechange = function() {

@@ -1,6 +1,6 @@
 function login2(username, password) {
-	if (!username) {username = document.getElementById("usernameLogIn").value;}
-	if (!password) {password = preparePassword(document.getElementById("passwordLogIn").value);}
+	if (!username) {username = document.getElementById("loginName").value;}
+	if (!password) {password = preparePassword(document.getElementById("loginPassword").value);}
 	const content = JSON.stringify({username, password});
 	let request = makeRequest("POST", "rest/accounts");
 	request.onreadystatechange = function() {
