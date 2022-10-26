@@ -13,3 +13,5 @@
 .idea/
 
 .DS_Store
+PiSec.iml
+/PiSec/src/main/python/PiSec.db

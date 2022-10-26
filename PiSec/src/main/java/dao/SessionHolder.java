@@ -23,13 +23,13 @@ public enum SessionHolder {
 	 */
 	public Session getSession(String sessionId) {
 		if (sessionExists(sessionId)) return sessions.get(sessionId);
-		return null;
+		return addSession();
 	}
 
 	public boolean sessionExists(String sessionId) {
-//		if (!sessions.containsKey(sessionId) || sessions.get(sessionId) == null) return false;
-//		return !sessions.get(sessionId).expired();
-		return true; // TODO: remove this when testing is done, Temporary for testing
+		if (!sessions.containsKey(sessionId) || sessions.get(sessionId) == null) return false;
+		return !sessions.get(sessionId).expired();
+//		return true; // TODO: remove this when testing is done, Temporary for testing
 	}
 
 	public boolean sessionLoggedIn(String sessionId, String account) {

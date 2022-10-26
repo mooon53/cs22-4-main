@@ -43,7 +43,7 @@ def alert(date, time , path):
 
 # sudo nano /boot/config.txt
 # at the end change dtoverlay line to dtoverlay=imx219
-
+GPIO.cleanup()
 GPIO.setmode(GPIO.BOARD)
 sensor = 11
 led = 37

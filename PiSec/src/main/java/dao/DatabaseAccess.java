@@ -77,9 +77,9 @@ public class DatabaseAccess {
 		return alert;
 	}
 
-	public static void addAccount(String username, String password) throws SQLException {
+	public static void addAccount(Account account, String password) throws SQLException {
 		String query = "INSERT INTO user(login, password)\n" +
-				"VALUES ('" + username + "', '" + password + "');";
+				"VALUES ('" + account.getUsername() + "', '" + password + "');";
 		statement.executeUpdate(query);
 	}
 
