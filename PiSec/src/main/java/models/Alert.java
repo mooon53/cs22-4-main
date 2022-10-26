@@ -1,6 +1,8 @@
 package models;
 
 import java.io.*;
+import java.nio.file.Path;
+import java.sql.SQLOutput;
 import java.util.Base64;
 import java.util.Date;
 
@@ -9,7 +11,7 @@ public class Alert {
 	private final String message;
 	private final String type;
 	private final String dateTime;
-	private String imagePath;
+	private Path imagePath;
 	private String encodedImage;
 
 	public Alert(String dateTime, String recording) {
@@ -17,7 +19,7 @@ public class Alert {
 		this.message = "";
 		this.type = "motion";
 		this.dateTime = dateTime;
-		this.imagePath = recording;
+		this.imagePath = Path.of(recording);
 	}
 
 	public void encodeImage() {
@@ -25,7 +27,9 @@ public class Alert {
 			int bufLength = 2048;
 			byte[] buffer = new byte[2048];
 			byte[] data;
-			FileInputStream stream = new FileInputStream(imagePath);
+			System.out.println(imagePath.toAbsolutePath());
+			System.out.println(imagePath.toRealPath());
+			FileInputStream stream = new FileInputStream(imagePath.toString());
 			ByteArrayOutputStream out = new ByteArrayOutputStream();
 			int readLength;
 			while ((readLength = stream.read(buffer, 0, bufLength)) != -1) {
@@ -38,14 +42,16 @@ public class Alert {
 			out.close();
 			stream.close();
 		} catch (IOException e) {
+			e.printStackTrace();
 			encodedImage = "";
 		}
 	}
 
 	public void setImagePath(String imagePath) {
-		this.imagePath = imagePath;
+		this.imagePath = Path.of(imagePath);
 	}
 
+	public Path getImagePath() {return imagePath;}
 	public Long getFromId() {return camId;}
 	public String getDate() {return dateTime;}
 	public String getType() {return type;}
