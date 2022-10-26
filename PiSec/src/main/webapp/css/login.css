@@ -61,7 +61,15 @@ body{
 .loginBottom:focus-visible{
     outline: none;
     border: 1px solid rgb(0, 68, 255) !important;
+}
+.LoginMid:focus-visible{
+    outline: none;
+    border: 1px solid rgb(0, 68, 255) !important;
+}
 
+.LoginMid{
+    padding: 0 10px;
+    border: 1px solid rgb(204, 204, 204) !important;
 }
 .loginBottom{
     padding: 0 10px;
@@ -145,20 +153,22 @@ body{
     color: black;
     font-size: 3rem;
     /* text-shadow: 2px 2px 5px black; */
-    margin-top: 75px;
+    margin-top: 60px;
 }
 .signupBack{
     width: 100%;
     display: flex;
+    justify-content: space-around;
 }
 .signupBack > .backToLoginBtn{
     flex: 1 0 auto;
     cursor: pointer;
     /* margin-top: 40px; */
-    margin: 40px min(12vw, 50px) 0 min(12vw, 50px);
+    margin: 0 min(12vw, 50px) 0 min(12vw, 50px);
+    max-width: 200px;
     padding: 4px 0;
     border-radius: 20px;
-    font-size: 22px;
+    font-size: 20px;
 
     color: white;
     background-color: rgba(0, 0, 0, 0.6);;
