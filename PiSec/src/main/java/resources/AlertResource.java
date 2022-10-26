@@ -17,6 +17,7 @@ public class AlertResource {
 		this.alertId = Long.parseLong(alertId);
 	}
 
+
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public Alert getAlert() {

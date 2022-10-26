@@ -8,13 +8,13 @@ import java.util.Date;
 public class Session {
 	private final String sessionId;
 	private final Date expiry;
-	private String account;
+	private Account account;
 
 	public Session(Date date, String sessionId) {
 		this(date, sessionId, null);
 	}
 
-	public Session(Date date, String sessionId, String account) {
+	public Session(Date date, String sessionId, Account account) {
 		this.expiry = new Date(date.getTime() + 3600000);
 		this.sessionId = sessionId;
 		this.account = account;
@@ -26,7 +26,7 @@ public class Session {
 	 */
 	public boolean expired() {return expiry.getTime() < new Date().getTime();}
 
-	public void login(String username) {this.account = username;}
+	public void login(Account account) {this.account = account;}
 
 	public String getSessionId() {
 		return sessionId;
@@ -40,7 +40,7 @@ public class Session {
 		return account != null;
 	}
 
-	public String getAccount() {
+	public Account getAccount() {
 		return account;
 	}
 }
