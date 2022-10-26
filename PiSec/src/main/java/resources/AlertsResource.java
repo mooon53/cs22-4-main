@@ -17,7 +17,7 @@ public class AlertsResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Alert> getAlerts(@HeaderParam("sessionId") String sessionId) {
 		if (INSTANCE.sessionExists(sessionId)) return DatabaseAccess.getAlerts();
-		else return new ArrayList<>();
+		else return null;
 	}
 
 	@Path("{id}")

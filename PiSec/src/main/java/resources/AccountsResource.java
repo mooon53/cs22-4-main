@@ -42,7 +42,7 @@ public class AccountsResource {
 		JSONObject response = new JSONObject();
 		Account account = getAccount(username);
 		if (account != null && account.checkPassword(password)) {
-			Session session = INSTANCE.getSession(sessionId);
+			Session session = INSTANCE.getSession(sessionId);  // TODO: check if session exists and isn't logged in
 			session.login(account);
 			response.put("success", true);
 			return response.toString();

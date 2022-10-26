@@ -18,7 +18,7 @@ def send_email(email):
     #mailserver.ehlo()
     mailserver.login('mikusvancans@gmail.com', 'bfzdsmtkagchtbhm')
 
-    mailserver.sendmail('mikusvancans@gmail.com', email ,msg.as_string())
+    mailserver.sendmail('mikusvancans@gmail.com', email, msg.as_string())
     print("Email sent!")
     mailserver.quit()
 
