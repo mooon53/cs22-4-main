@@ -27,9 +27,9 @@ public enum SessionHolder {
 	}
 
 	public boolean sessionExists(String sessionId) {
-		if (!sessions.containsKey(sessionId) || sessions.get(sessionId) == null) return false;
-		return !sessions.get(sessionId).expired();
-//		return true; // TODO: remove this when testing is done, Temporary for testing
+		return true; // TODO: remove this when testing is done, Temporary for testing
+//		if (!sessions.containsKey(sessionId) || sessions.get(sessionId) == null) return false;
+//		return !sessions.get(sessionId).expired();
 	}
 
 	public boolean sessionLoggedIn(String sessionId, String account) {

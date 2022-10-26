@@ -2,7 +2,7 @@ import datetime
 
 import RPi.GPIO as GPIO
 import os
-from time import sleep
+from time import sleep, time
 
 import sqlite3
 from sqlite3 import Error
@@ -24,20 +24,20 @@ def create_connection(db_file):
 
 def create_alert_record(conn, alert):
     """create new record in alert table"""
-    sql = "INSERT INTO alert(date, time, recording) VALUES (?, ?, ?)"
+    sql = "INSERT INTO alert(date_time, recording) VALUES (?, ?)"
 
     cur = conn.cursor()
     cur.execute(sql, alert)
     conn.commit()
     return cur.lastrowid
 
-def alert(date, time , path):
+def alert(dateTime , path):
     database = r"PiSec.db"
     # create a database connection
     conn = create_connection(database)
     with conn:
         # create a new record in motion
-        alert = (date, time, path)
+        alert = (dateTime, path)
         alert_id = create_alert_record(conn, alert)
 
 
@@ -57,20 +57,16 @@ try:
     print('Set up')
     value = GPIO.input(sensor)
     while True:
-        if value!=0:
+        if value != 0:
             GPIO.output(led, GPIO.HIGH)
-            dateTime = str(datetime.datetime.now())
-            dateSplit = dateTime.split(" ")
-            date = dateSplit[0]
-            timeAccurate = dateSplit[1]
-            timeSplit = timeAccurate.split(".")
-            time = timeSplit[0]
-            path = '~/Pictures/' + dateTime.replace(" ", "_") + '.jpg'
-            os.system('libcamera-jpeg -o '+ path)
+            dateTime = str(round(time() * 1000))
+            filename = dateTime + ".jpg"
+            path = '~/Pictures/' + filename
+            os.system('libcamera-jpeg -o ' + path)
             print('Motion')
             send_whatsapp(31637171525)
             send_email("t.frauenfelder@student.utwente.nl")
-            alert(date, time, path)
+            alert(dateTime, filename)
             sleep(10) #change to 30s when implement recording
         else:
             GPIO.output(led, GPIO.LOW)

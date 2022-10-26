@@ -6,6 +6,7 @@ import utils.DBConnectionChecker;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /*
@@ -46,14 +47,14 @@ public class DatabaseAccess {
 
 	public static List<Alert> getAlerts() {
 		ArrayList<Alert> alerts = new ArrayList<>();
-		String query = "SELECT date, recording\n" +
+		String query = "SELECT aid, date_time\n" +
 				"FROM alert;";
 		try {
 			ResultSet resultSet = statement.executeQuery(query);
 			while (resultSet.next()) {
-				String date = resultSet.getString("date");
-				String recording = resultSet.getString("recording");
-				alerts.add(new Alert(date, recording));
+				int id = resultSet.getInt("aid");
+				Date dateTime = new java.util.Date(resultSet.getLong("date_time"));
+				alerts.add(new Alert(id, dateTime));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -62,16 +63,17 @@ public class DatabaseAccess {
 	}
 
 	public static Alert getAlert(Long alertId) {
-		String query = "SELECT date, recording\n" +
+		String query = "SELECT aid, date_time, recording\n" +
 				"FROM alert\n" +
 				"WHERE aid =" + alertId.toString() + ";";
 		Alert alert = null;
 		try {
 			ResultSet resultSet = statement.executeQuery(query);
 			resultSet.next();
-			String date = resultSet.getString("date");
+			int id = resultSet.getInt("aid");
+			Date dateTime = new Date(resultSet.getLong("date_time"));
 			String recording = resultSet.getString("recording");
-			alert = new Alert(date, recording);
+			alert = new Alert(id, dateTime, recording);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
