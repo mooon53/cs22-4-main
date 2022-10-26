@@ -13,7 +13,8 @@ Gets data from the database and transforms it into a format that is easier to us
  */
 public class DatabaseAccess {
 	private static Statement statement;
-	private static final String URL = "jdbc:sqlite:/Users/tice/python/PiSec.db";
+	private final static String HOME = System.getProperty("user.home");
+	private static final String URL = HOME + "/python/PiSec.db";
 
 	static {
 		boolean connected = false;
@@ -21,7 +22,7 @@ public class DatabaseAccess {
 		while (!connected) {
 			try {
 				DriverManager.registerDriver(new org.sqlite.JDBC());
-				connection = DriverManager.getConnection(URL);
+				connection = DriverManager.getConnection("jdbc:sqlite:" + URL);
 				statement = connection.createStatement();
 				System.out.println("SQL connection established!");
 				connected = true;
