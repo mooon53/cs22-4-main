@@ -1,6 +1,9 @@
 function login2(username, password) {
 	if (!username) {username = document.getElementById("usernameLogIn").value;}
-	if (!password) {password = preparePassword(document.getElementById("passwordLogIn").value);}
+	if (!password) {password = document.getElementById("passwordLogIn").value;}
+	const hashObj = new jsSHA("SHA-512", "TEXT", {numRounds: 1});
+	hashObj.update(password);
+	password = hashObj.getHash("HEX");
 	const content = JSON.stringify({username, password});
 	let request = makeRequest("POST", "rest/accounts");
 	request.onreadystatechange = function() {
@@ -8,7 +11,7 @@ function login2(username, password) {
 			const response = JSON.parse(this.responseText);
 			if (response.success) {
 				setLoginCookies(username);
-				location.href = "/";
+				// location.href = "/";
 			}  // TODO: change text on screen to reflect not success with reason
 		}
 	}

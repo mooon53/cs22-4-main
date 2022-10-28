@@ -1,3 +1,5 @@
+"use strict";
+
 function checkSession() {
 	let cookieMap = getCookies();
 	if (!cookieMap.has("sessionId") || cookieMap.get("sessionExpires") < new Date().getTime()) newSession();

@@ -22,6 +22,8 @@ public enum SessionHolder {
 	 * @throws SessionException If the session does not exist or is expired
 	 */
 	public Session getSession(String sessionId) {
+		System.out.println(sessionId);
+		System.out.println(sessions);
 		if (sessionExists(sessionId)) return sessions.get(sessionId);
 		return addSession();
 	}
@@ -43,9 +45,9 @@ public enum SessionHolder {
 		String sessionId = null;
 		Session session = null;
 		while (!sessions.containsKey(sessionId)) {
-			sessionId = ((Long) random.nextLong()).toString();
+			sessionId = Long.toUnsignedString(random.nextLong(), 16);
 			session = new Session(new Date(), sessionId);
-			sessions.put(sessionId.toString(), session);
+			sessions.put(sessionId, session);
 			try {
 			Thread.sleep(1000);
 			} catch (InterruptedException e) {

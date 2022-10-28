@@ -8,7 +8,7 @@ import org.json.JSONObject;
 
 import java.sql.SQLException;
 
-import static utils.PasswordUtils.preparePassword;
+import static utils.PasswordUtils.*;
 import static dao.DatabaseAccess.*;
 import static dao.SessionHolder.INSTANCE;
 
@@ -24,11 +24,13 @@ public class AccountsResource {
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
 	public void createAccount(String input, @HeaderParam("sessionId") String sessionId) throws SQLException {
+		System.out.println(input);
 		JSONObject accountData = new JSONObject(input);
 		String username = accountData.getString("username");
-		String password = preparePassword(accountData.getString("password"));
-		Account account = new Account(username, password);
-		addAccount(account, password);
+		String salt = generateSalt();
+		String password = preparePassword(accountData.getString("password"), salt);
+		Account account = new Account(username, password, salt);
+		addAccount(account, password, salt);
 		INSTANCE.getSession(sessionId).login(account);
 	}
 
@@ -36,11 +38,13 @@ public class AccountsResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public String logIn(String input, @HeaderParam("sessionId") String sessionId) {
+		System.out.println(input);
 		JSONObject accountData = new JSONObject(input);
 		String username = accountData.getString("username");
-		String password = preparePassword(accountData.getString("password"));
-		JSONObject response = new JSONObject();
 		Account account = getAccount(username);
+		String salt = account.getSalt();
+		String password = preparePassword(accountData.getString("password"), salt);
+		JSONObject response = new JSONObject();
 		if (account != null && account.checkPassword(password)) {
 			Session session = INSTANCE.getSession(sessionId);  // TODO: check if session exists and isn't logged in
 			session.login(account);
