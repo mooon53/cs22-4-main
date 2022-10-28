@@ -170,7 +170,19 @@ body{
     border-radius: 20px;
     font-size: 20px;
 
-    color: white;
-    background-color: rgba(0, 0, 0, 0.6);;
+    /*color: white;*/
+    /*background-color: rgba(0, 0, 0, 0.6);;*/
+    color: black;
+    border: none;
+    background: transparent;
+
+    transition: color 500ms;
+
+}
+.signupBack > .backToLoginBtn:hover {
+    /* background-color: rgba(128, 128, 128, 0.45); */
+    /* border: 1px solid black; */
+    color: #0098B5;
+    /*text-shadow: 0 1px 2px black;*/
 
 }
