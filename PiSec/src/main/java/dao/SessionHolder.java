@@ -1,6 +1,5 @@
 package dao;
 
-import exceptions.SessionException;
 import models.Session;
 
 import java.util.Date;
@@ -19,7 +18,6 @@ public enum SessionHolder {
 	 * Returns the Session object if it exists, otherwise throws an Exception
 	 * @param sessionId The id of the session that you want
 	 * @return The Session
-	 * @throws SessionException If the session does not exist or is expired
 	 */
 	public Session getSession(String sessionId) {
 		if (sessionExists(sessionId)) return sessions.get(sessionId);
@@ -43,9 +41,9 @@ public enum SessionHolder {
 		String sessionId = null;
 		Session session = null;
 		while (!sessions.containsKey(sessionId)) {
-			sessionId = ((Long) random.nextLong()).toString();
+			sessionId = Long.toUnsignedString(random.nextLong(), 16);
 			session = new Session(new Date(), sessionId);
-			sessions.put(sessionId.toString(), session);
+			sessions.put(sessionId, session);
 			try {
 			Thread.sleep(1000);
 			} catch (InterruptedException e) {

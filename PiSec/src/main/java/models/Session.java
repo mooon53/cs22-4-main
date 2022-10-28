@@ -28,19 +28,8 @@ public class Session {
 
 	public void login(Account account) {this.account = account;}
 
-	public String getSessionId() {
-		return sessionId;
-	}
-
-	public long getExpiration() {
-		return expiry.getTime();
-	}
-
-	public boolean getLoggedIn() {
-		return account != null;
-	}
-
-	public Account getAccount() {
-		return account;
-	}
+	public String getSessionId() {return sessionId;}
+	public long getExpiration() {return expiry.getTime();}
+	public boolean getLoggedIn() {return account != null;}
+	public Account getAccount() {return account;}
 }

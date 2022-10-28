@@ -80,21 +80,24 @@ public class DatabaseAccess {
 		return alert;
 	}
 
-	public static void addAccount(Account account, String password) throws SQLException {
-		String query = "INSERT INTO user(login, password)\n" +
-				"VALUES ('" + account.getUsername() + "', '" + password + "');";
+	public static void addAccount(Account account, String password, String salt) throws SQLException {
+		String query = "INSERT INTO user(login, password, salt)\n" +
+				"VALUES ('" + account.getUsername() + "', '" + password + "', '" + salt + "');";
 		statement.executeUpdate(query);
 	}
 
 	public static Account getAccount(String username) {
-		String query = "SELECT login, password\n" +
+		String query = "SELECT login, password, salt\n" +
 				"FROM user\n" +
 				"WHERE login = '" + username + "';";
 		Account account = null;
 		try {
 			ResultSet resultSet = statement.executeQuery(query);
 			resultSet.next();
-			account = new Account(resultSet.getString("login"), resultSet.getString("password"));
+			String user = resultSet.getString("login");
+			String password = resultSet.getString("password");
+			String salt = resultSet.getString("salt");
+			account = new Account(user, password, salt);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
