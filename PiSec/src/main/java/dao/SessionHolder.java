@@ -1,5 +1,6 @@
 package dao;
 
+import models.Account;
 import models.Session;
 
 import java.util.Date;
@@ -12,7 +13,8 @@ import java.util.Random;
 public enum SessionHolder {
 	INSTANCE;
 
-	static final HashMap<String, Session> sessions = new HashMap<>();
+	private static final Random random = new Random();
+	private static final HashMap<String, Session> sessions = new HashMap<>();
 
 	/**
 	 * Returns the Session object if it exists, otherwise throws an Exception
@@ -30,14 +32,13 @@ public enum SessionHolder {
 //		return !sessions.get(sessionId).expired();
 	}
 
-	public boolean sessionLoggedIn(String sessionId, String account) {
+	public boolean sessionLoggedIn(String sessionId, Account account) {
 		if (!sessionExists(sessionId)) return false;
 		Session session = sessions.get(sessionId);
 		return session.getAccount().equals(account);
 	}
 
 	public Session addSession() {
-		Random random = new Random();
 		String sessionId = null;
 		Session session = null;
 		while (!sessions.containsKey(sessionId)) {
@@ -45,7 +46,7 @@ public enum SessionHolder {
 			session = new Session(new Date(), sessionId);
 			sessions.put(sessionId, session);
 			try {
-			Thread.sleep(1000);
+				Thread.sleep(1000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

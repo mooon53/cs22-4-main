@@ -43,7 +43,7 @@ public class AccountsResource {
 		String salt = account.getSalt();
 		String password = preparePassword(accountData.getString("password"), salt);
 		JSONObject response = new JSONObject();
-		if (account != null && account.checkPassword(password)) {
+		if (account.checkPassword(password)) {
 			Session session = INSTANCE.getSession(sessionId);  // TODO: check if session exists and isn't logged in
 			session.login(account);
 			response.put("success", true);

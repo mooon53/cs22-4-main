@@ -28,7 +28,7 @@ public class PasswordUtils {
 			StringBuilder hashedPass = new StringBuilder();
 			for (byte b : hash) {
 				String hex = Integer.toHexString(Byte.toUnsignedInt(b));
-				while (hex.length() < 2) hex = "0" + hex;
+				if (hex.length() < 2) hashedPass.append(0);
 				hashedPass.append(hex);
 			}
 			return hashedPass.toString();
@@ -48,7 +48,7 @@ public class PasswordUtils {
 		StringBuilder saltString = new StringBuilder();
 		for (byte b : salt) {
 			String hex = Integer.toHexString(Byte.toUnsignedInt(b));
-			while (hex.length() < 2) hex = "0" + hex;
+			if (hex.length() < 2) saltString.append(0);
 			saltString.append(hex);
 		}
 		return saltString.toString();
