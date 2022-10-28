@@ -83,7 +83,6 @@ public class DatabaseAccess {
 	public static void addAccount(Account account, String password, String salt) throws SQLException {
 		String query = "INSERT INTO user(login, password, salt)\n" +
 				"VALUES ('" + account.getUsername() + "', '" + password + "', '" + salt + "');";
-		System.out.println(query);
 		statement.executeUpdate(query);
 	}
 

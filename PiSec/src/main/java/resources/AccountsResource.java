@@ -24,7 +24,6 @@ public class AccountsResource {
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
 	public void createAccount(String input, @HeaderParam("sessionId") String sessionId) throws SQLException {
-		System.out.println(input);
 		JSONObject accountData = new JSONObject(input);
 		String username = accountData.getString("username");
 		String salt = generateSalt();
@@ -38,7 +37,6 @@ public class AccountsResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public String logIn(String input, @HeaderParam("sessionId") String sessionId) {
-		System.out.println(input);
 		JSONObject accountData = new JSONObject(input);
 		String username = accountData.getString("username");
 		Account account = getAccount(username);
