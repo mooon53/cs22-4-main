@@ -14,5 +14,4 @@
 
 .DS_Store
 PiSec.iml
-
-/PiSec/src/main/webapp/WEB-INF/web.xml
+web.xml
