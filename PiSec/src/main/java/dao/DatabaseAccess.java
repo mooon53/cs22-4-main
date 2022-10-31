@@ -16,10 +16,10 @@ public class DatabaseAccess {
 	private static Statement statement;
 	private static final String HOME = System.getProperty("user.home");
 	private static final String URL = HOME + "/python/PiSec.db";
+	private static Connection connection = null;
 
 	static {
 		boolean connected = false;
-		Connection connection = null;
 		while (!connected) {
 			try {
 				DriverManager.registerDriver(new org.sqlite.JDBC());
@@ -64,10 +64,11 @@ public class DatabaseAccess {
 	public static Alert getAlert(Long alertId) {
 		String query = "SELECT aid, date_time, recording\n" +
 				"FROM alert\n" +
-				"WHERE aid =" + alertId.toString() + ";";
+				"WHERE aid = ?;";
 		Alert alert = null;
-		try {
-			ResultSet resultSet = statement.executeQuery(query);
+		try (PreparedStatement preparedStatement = connection.prepareStatement(query)){
+			preparedStatement.setString(1, alertId.toString());
+			ResultSet resultSet = preparedStatement.executeQuery();
 			resultSet.next();
 			int id = resultSet.getInt("aid");
 			Date dateTime = new Date(resultSet.getLong("date_time"));
@@ -81,17 +82,22 @@ public class DatabaseAccess {
 
 	public static void addAccount(Account account, String password, String salt) throws SQLException {
 		String query = "INSERT INTO user(login, password, salt)\n" +
-				"VALUES ('" + account.getUsername() + "', '" + password + "', '" + salt + "');";
-		statement.executeUpdate(query);
+				"VALUES (?, ?, ?);";
+		PreparedStatement preparedStatement = connection.prepareStatement(query);
+		preparedStatement.setString(1, account.getUsername());
+		preparedStatement.setString(2, password);
+		preparedStatement.setString(3, salt);
+		preparedStatement.executeUpdate();
 	}
 
 	public static Account getAccount(String username) {
 		String query = "SELECT login, password, salt\n" +
 				"FROM user\n" +
-				"WHERE login = '" + username + "';";
+				"WHERE login = ?;";
 		Account account = new Account();
-		try {
-			ResultSet resultSet = statement.executeQuery(query);
+		try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+			preparedStatement.setString(1, username);
+			ResultSet resultSet = preparedStatement.executeQuery();
 			resultSet.next();
 			String user = resultSet.getString("login");
 			String password = resultSet.getString("password");
