@@ -14,7 +14,7 @@ Gets data from the database and transforms it into a format that is easier to us
  */
 public class DatabaseAccess {
 	private static Statement statement;
-	private final static String HOME = System.getProperty("user.home");
+	private static final String HOME = System.getProperty("user.home");
 	private static final String URL = HOME + "/python/PiSec.db";
 
 	static {
@@ -33,8 +33,7 @@ public class DatabaseAccess {
 			}
 		}
 		DBConnectionChecker dbCheck = new DBConnectionChecker(connection, URL);
-		Thread thread = new Thread(dbCheck, "Connection checker");
-		thread.start();
+		dbCheck.start();
 	}
 
 	private DatabaseAccess() {
@@ -90,7 +89,7 @@ public class DatabaseAccess {
 		String query = "SELECT login, password, salt\n" +
 				"FROM user\n" +
 				"WHERE login = '" + username + "';";
-		Account account = null;
+		Account account = new Account();
 		try {
 			ResultSet resultSet = statement.executeQuery(query);
 			resultSet.next();

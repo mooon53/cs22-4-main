@@ -6,7 +6,6 @@ import models.*;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static dao.SessionHolder.INSTANCE;

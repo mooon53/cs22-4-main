@@ -17,6 +17,10 @@ public class Account {
 		this(username, password, salt, "");
 	}
 
+	public Account() {
+		this("", "", "");
+	}
+
 	public String getPassword() {
 		return null;  // DO NOT RETURN PASSWORD, USE checkPassword() INSTEAD!!!
 	}

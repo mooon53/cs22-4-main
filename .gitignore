@@ -10,8 +10,5 @@
 /PiSec/.idea/
 /PiSec/target/
 
-.idea/
-
 .DS_Store
 PiSec.iml
-web.xml

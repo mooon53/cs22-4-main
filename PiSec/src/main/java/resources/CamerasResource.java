@@ -12,7 +12,7 @@ public class CamerasResource {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Camera> getCameras() {
-		ArrayList<Camera> cameras = new ArrayList();
+		ArrayList<Camera> cameras = new ArrayList<>();
 		cameras.add(new Camera(0L, "Office"));
 		return cameras;
 	}

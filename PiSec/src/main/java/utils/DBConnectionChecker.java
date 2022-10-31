@@ -8,14 +8,15 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DBConnectionChecker extends Thread {
-    private final String URL;
-    private final long WAIT = 60000;
+    private final String url;
+    private static final long WAIT = 60000;
 
     private Connection connection;
 
     public DBConnectionChecker(Connection connection, String url) {
         this.connection = connection;
-        this.URL = url;
+        this.url = url;
+        this.setName("Database connection checker");
     }
 
     @Override
@@ -24,7 +25,7 @@ public class DBConnectionChecker extends Thread {
             try {
                 Thread.sleep(WAIT);
                 if (connection.isClosed()) {
-                    connection = DriverManager.getConnection(URL);
+                    connection = DriverManager.getConnection(url);
                     DatabaseAccess.replaceStatement(connection.createStatement());
                 }
             } catch (InterruptedException | SQLException e) {

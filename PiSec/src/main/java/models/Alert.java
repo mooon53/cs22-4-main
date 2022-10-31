@@ -1,8 +1,6 @@
 package models;
 
 import java.io.*;
-import java.nio.file.Path;
-import java.sql.SQLOutput;
 import java.util.Base64;
 import java.util.Date;
 
@@ -15,17 +13,17 @@ public class Alert {
 	private String imagePath;
 	private String encodedImage;
 
-	public Alert(int id, Date dateTime, String recording) {
+	public Alert(int id, Date dateTime, String imagePath) {
 		this.id = id;
 		this.camId = 0L;
 		this.message = "";
 		this.type = "motion";
 		this.dateTime = dateTime;
-		this.imagePath = recording;
+		this.imagePath = imagePath;
 	}
 
 	public Alert(int id, Date dateTime) {
-		this(id, dateTime, "");
+		this(id, dateTime, null);
 	}
 
 	public void encodeImage() {
@@ -58,6 +56,6 @@ public class Alert {
 	public String getType() {return type;}
 	public String getMessage() {return message;}
 	public String getImage() {
-		if (encodedImage == null) encodeImage();
+		if (encodedImage == null && imagePath != null) encodeImage();
 		return encodedImage;}
 }
