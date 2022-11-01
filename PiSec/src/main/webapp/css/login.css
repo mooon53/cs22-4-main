@@ -42,7 +42,11 @@ body{
 .LoginForm{
     display: flex;
     flex-direction: column;
-    margin: 75px min(12vw, 50px);
+    margin: 50px min(12vw, 50px) 0;
+
+    --loginFormWidth: calc(var(--width) - min(12vw, 50px)*2);
+    width: var(--loginFormWidth);
+
 }
 .LoginForm > input{
     height: min(50px);
@@ -164,7 +168,7 @@ body{
     flex: 1 0 auto;
     cursor: pointer;
     /* margin-top: 40px; */
-    margin: 0 min(12vw, 50px) 0 min(12vw, 50px);
+    margin: 35px min(12vw, 50px) 0 min(12vw, 50px);
     max-width: 200px;
     padding: 4px 0;
     border-radius: 20px;
@@ -185,4 +189,11 @@ body{
     color: #0098B5;
     /*text-shadow: 0 1px 2px black;*/
 
+}
+
+.signupLegalMsg{
+    width: var(--loginFormWidth);
+    text-align: center;
+    margin-top: 15px;
+    font-size: .75rem;
 }
