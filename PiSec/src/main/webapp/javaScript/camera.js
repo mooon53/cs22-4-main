@@ -33,9 +33,18 @@ function loadPage(backEndData){
     let notificationsHTML = "";
     for (const i in currentCamera.notifications){
         const noti = currentCamera.notifications[i]
-        notificationsHTML += notificationTemplate(noti);
+        notificationsHTML += notificationTemplate(noti, i);
     }
+
+    // for security input the data as text:
     document.getElementById('notificationsContainer').innerHTML = notificationsHTML;
+    for (const i in currentCamera.notifications){
+        const data = currentCamera.notifications[i]
+
+        document.getElementById(`cameraNotificationDate${i}`).innerText = data.date.split("T")[0];
+        document.getElementById(`cameraNotificationTime${i}`).innerText = data.date.split("T")[1];
+        document.getElementById(`cameraNotifiactionMsg${i}`).innerText = ` ${data.message}`;
+    }
 }
 
 // set the total notification amount in the nav bar
@@ -54,17 +63,15 @@ function getUrlVars() {
 }
 
 // the html template of the notifications.
-const notificationTemplate = (data) => `
+const notificationTemplate = (data, i) => `
     <div class="cameraNotification">
         <div class="cameraNotificationInfo">
-            <div class="cameraNotificationDate">
-                ${data.date.split("T")[0]}
+            <div class="cameraNotificationDate" id='cameraNotificationDate${i}'>
             </div>
-            <div class="cameraNotificationTime">
-                ${data.date.split("T")[1]}
+            <div class="cameraNotificationTime" id='cameraNotificationTime${i}'>
             </div>
         </div>
-        <div ${data.type === 'important' ? 'class="importantNoti"' : ''}>
-            ${data.message}
+        <div ${data.type === 'important' ? 'class="importantNoti"' : ''} id='cameraNotifiactionMsg${i}'>
+           
         </div>
     </div>`

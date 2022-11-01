@@ -13,7 +13,7 @@
       "id": 1,
       "name": "Office",
       "isLive": true,
-      "notifications": [
+      "notifications":[
         {
           "type" : "important",
           "message": "An intruder has been detected",

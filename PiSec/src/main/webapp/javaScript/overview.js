@@ -19,6 +19,11 @@ function loadPage(backEndData){
         camerasHtml += cameraItemTemplate(cameras[cameraID]);
     }
     camerasContainer.innerHTML = camerasHtml;
+
+    // for security input the name as text:
+    for (const cameraID in cameras){
+        document.getElementById(`camareaTitle${cameras[cameraID].id}`).innerText = cameras[cameraID].name;
+    }
 }
 
 // set the total notification amount in the nav bar
@@ -29,11 +34,11 @@ function loadNotifications(noti){
 
 // the html template of the camera menu item
 const cameraItemTemplate = (data) => `
-  <div class="camera unselectable" style="background-image: url('./images/${data.showCaseImage}')" onclick="location.href='camera.html?id=${data.id}'">
+  <div class="camera unselectable" style="background-image: url('./images/${data.showCaseImage}')" onclick="location.href='camera.html?id=${Number(data.id)}'">
     <div class="cameraOverlay">
         <div class="cameraInfo">
             <div class="cameraTextContainer">
-                <div class="cameraTitle">${data.name}</div>
+                <div class="cameraTitle" id="camareaTitle${Number(data.id)}"></div>
                 <div class="status">
                     <div class="liveStatusIcon">
                         <svg>
@@ -46,7 +51,7 @@ const cameraItemTemplate = (data) => `
             <div class="notificationIcon">
                 <svg>
                     <circle cx="27" cy="27" r="27" fill="#FF7F3F"></circle>
-                    <text x="28" y="41" fill="#E8ECF1">${data.notifications.length}</text>
+                    <text x="28" y="41" fill="#E8ECF1">${Number(data.notifications.length)}</text>
                 </svg>
             </div>
         </div>
