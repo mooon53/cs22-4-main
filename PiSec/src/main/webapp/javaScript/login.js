@@ -1,57 +1,44 @@
-function loadPage() {
-    // sessionId();
-    // changeLogInButton();
+function login(username, password) {
+	// document.getElementById('loginName').style.border = `none`;
+	// document.getElementById('loginPassword').style.border = `none`;
+
+	if (!username) {username = document.getElementById("loginName").value;}
+	if (!password) {password = document.getElementById("loginPassword").value;}
+
+	if (username === ""){
+		document.getElementById('loginName').style.border = `1px solid red !important`;
+		showNotification("Fill in a username", false);
+		return;
+	}
+	if (password === ""){
+		document.getElementById('loginPassword').style.border = `1px solid red !important`;
+		showNotification("Fill in a password", false);
+		return;
+	}
+	const hashObj = new jsSHA("SHA-512", "TEXT", {numRounds: 1});
+	hashObj.update(password);
+	password = hashObj.getHash("HEX");
+	const content = JSON.stringify({username, password});
+	let request = makeRequest("POST", "rest/accounts");
+	request.onreadystatechange = function() {
+		if (this.readyState === 4 && this.status === 200) {
+			const response = JSON.parse(this.responseText);
+			if (response.success) {
+				setLoginCookies(username);
+				location.href = "/";
+			} else {
+				document.getElementById('loginName').style.border = `1px solid red !important`;
+				document.getElementById('loginPassword').style.border = `1px solid red !important`;
+				showNotification("Login details are incorrect", false);
+			}
+		}
+	}
+	request.setRequestHeader("Content-Type", "application/json");
+	request.send(content);
 }
 
-function login(email, password) {
-    location.href = "index.html";
-    // let request = new XMLHttpRequest();
-    // request.onreadystatechange = function () {
-    //     if (this.readyState === 4 && this.status === 200) {
-    //         let response = JSON.parse(this.responseText);
-    //         if (response.success) location.href = "index.html";
-    //         else alert("Wrong username or password :(");
-    //     }
-    // };
-    // if (!email) email = document.getElementById("email").value;
-    // if (!password) password = stringToHashConversion(document.getElementById("password").value);
-    // let sessionId = getSessionId();
-    // let responseString = JSON.stringify({sessionId, email, password});
-    // request.open("POST", "rest/account", true);
-    // request.setRequestHeader("Accept", "application/json");
-    // request.setRequestHeader("Content-Type", "application/json");
-    // request.send(responseString);
+function setLoginCookies(username) {
+	const expiry = Number.parseInt(getCookies().get("sessionExpires"));
+	document.cookie = `loggedIn=${true};expires=${new Date(expiry).toUTCString()};`;
+	document.cookie = `account=${username};expires=${new Date(expiry).toUTCString()};`;
 }
-
-function signUp() {
-    let request = new XMLHttpRequest();
-    request.onreadystatechange = function () {
-        if (this.readyState === 4 && this.status === 204) {
-            login(email, password);
-        }
-    };
-    let email = document.getElementById('signupEmail').value;
-    let password = stringToHashConversion(document.getElementById('signupPassword').value);
-    let tel = stringToHashConversion(document.getElementById('telephone').value);
-    let response;
-    response = {email, password};
-    if (!!tel) response["code"] = tel;
-    let responseString = JSON.stringify(response);
-    request.open("POST", "rest/signup", true);
-    request.setRequestHeader("Content-Type", "application/json");
-    request.send(responseString);
-    console.log(responseString);
-}
-
-function stringToHashConversion(string) {
-    let hashVal = 0;
-    if (string.length === 0) return null;
-    for (let i = 0; i < string.length; i++) {
-        const char = string.charCodeAt(i);
-        hashVal = ((hashVal << 5) - hashVal) + char;
-        hashVal = hashVal & hashVal;
-    }
-    return String(hashVal);
-}
-
-loadPage();

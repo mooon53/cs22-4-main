@@ -7,25 +7,25 @@
     <script src="javaScript/sessionsManager.js"></script>
     <script src="javaScript/requestMaker.js"></script>
     <script src="javaScript/signUp.js"></script>
-    <script src="javaScript/login2.js"></script>
+    <script src="javaScript/login.js"></script>
 </head>
 <body onload="checkSession()">
 You are not logged in, this will be the login page
 <br>
-<label for="username"> Username:</label>
-<input type="text" id="username">
+<label for="signupName"> Username:</label>
+<input type="text" id="signupName">
 <br>
-<label for="password">Password:</label>
-<input type="password" encrypt="bcrypt" id="password">
+<label for="signupPassword">Password:</label>
+<input type="password" encrypt="bcrypt" id="signupPassword">
 <br>
 <button onclick="signUp()">sign up</button>
 <br>
-<label for="username"> Username:</label>
-<input type="text" id="usernameLogIn">
+<label for="loginPassword"> Username:</label>
+<input type="text" id="loginName">
 <br>
-<label for="password">Password:</label>
-<input type="password" encrypt="bcrypt" id="passwordLogIn">
+<label for="loginPassword">Password:</label>
+<input type="password" encrypt="bcrypt" id="loginPassword">
 <br>
-<button onclick="login2()">log in</button>
+<button onclick="login()">log in</button>
 </body>
 </html>

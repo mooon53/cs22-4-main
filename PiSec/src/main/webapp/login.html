@@ -1,60 +1,51 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>PiSec · Login</title>
-    <link rel="stylesheet" href="./css/login.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Psec · Login</title>
 
+    <link rel="stylesheet" type="text/css" href="css/global.css">
+    <link rel="stylesheet" href="css/login.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsSHA/2.0.2/sha.js"></script>
     <script src="javaScript/sessionsManager.js"></script>
-    <script src="./javaScript/login.js" defer></script>
-
+<!--    <script src="javaScript/passwordUtils.js"></script>-->
+    <script src="javaScript/requestMaker.js"></script>
+    <script src="javaScript/signUp.js"></script>
+    <script src="javaScript/login.js"></script>
+    <script src="javaScript/miscellaneous.js"></script>
 </head>
-<body>
-<!--</main>-->
-<div class="container" id="container">
-    <div class="form-container sign-up-container">
-        <form action="" onsubmit="return false;">
-            <h1>Create Account</h1>
-            <div class="social-container">
-
+<body onload="checkSession()">
+    <div class="loginContainer" style="transition: transform 10s" id="test">
+        <div class="loginContent">
+            <div class="loginTitle unselectable">Login</div>
+            <div class="LoginForm">
+                <input id="loginName" type="text" class="loginTop" placeholder="Username">
+                <input id="loginPassword" type="password" class="loginBottom" placeholder="Password">
+                <input id="loginBtn" type="button" value="Login" class="loginBtn unselectable" onclick="login()">
             </div>
-
-            <input type="email" name="email" id="signupEmail" placeholder="Email"/>
-            <input type="password" name="password" id="signupPassword" placeholder="Password"/>
-            <input type="tel" name="telephone" id="telephone" placeholder="telephone"/>
-            
-            <button onclick="signUp()" class="signUpBtn">sign up</button>
-        </form>
-    </div>
-    <div class="form-container sign-in-container">
-        <form action="" onsubmit="return false;">
-            <h1>Log In</h1>
-            <div class="social-container">
-
-            </div>
-            <input type="email" name="email" id="email" placeholder="Email"/>
-            <input type="password" name="password" id="password" placeholder="Password"/>
-            <!--            <input type="submit" value="Log In">-->
-            <button onclick="login()" class="loginBtn">Log In</button>
-        </form>
-    </div>
-    <div class="overlay-container">
-        <div class="overlay">
-            <div class="overlay-panel overlay-left">
-                <h1>Welcome Back!</h1>
-                <p>press here to log in with your account</p>
-                <button class="ghost" id="signIn" onclick="container.classList.remove('right-panel-active');">Log In
-                </button>
-            </div>
-            <div class="overlay-panel overlay-right">
-                <h1>Welcome!</h1>
-                <p>If you don't have an account yet, sign up here</p>
-                <button class="ghost" id="signUp" onclick="container.classList.add('right-panel-active');">Sign Up
-                </button>
+        </div>
+        <div id="goToSignup" class="signupContent unselectable">
+            <div class="signUpClicker" onclick="document.getElementById('goToSignup').classList.add('active');"></div>
+            <div class="orSignUp">Or <strong>Sign up</strong></div>
+            <div class="signupActiveContent">
+                <div class="signupTitle unselectable">Sign up</div>
+                <div class="LoginForm">
+                    <input id="signupName" type="text" class="loginTop" placeholder="Username">
+                    <input id="signupPhone" type="tel" class="LoginMid" placeholder="Phone number">
+                    <input id="signupPassword" type="password" class="loginBottom" placeholder="Password">
+                    <input id="signupBtn" type="button" value="Signup" class="loginBtn unselectable" onclick="signUp()">
+                </div>
+                <div class="signupBack">
+                    <input type="button" value="Back to Login" class="backToLoginBtn unselectable"
+                        onclick="document.getElementById('goToSignup').classList.remove('active')">
+                </div>
             </div>
         </div>
     </div>
-</div>
+
+    <div id="notifications"></div>
 </body>
 </html>
