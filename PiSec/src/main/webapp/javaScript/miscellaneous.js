@@ -19,6 +19,27 @@ function closeNotification(id){
     }
 }
 
+function requestNotifications() {
+    if (this.readyState === 4 && this.status === 200) {
+        const response = JSON.parse(this.responseText);
+
+        const numOfAlerts = document.getElementById('numberOfAlerts')
+        if (numOfAlerts) numOfAlerts.innerText = response.length;
+
+        loadNotifications(response);
+    } else if (this.status === 500 || this.status === 505){
+        showNotification("Couldn't retrieve notifications")
+    }
+}
+function requestCameras() {
+    if (this.readyState === 4 && this.status === 200) {
+        const response = JSON.parse(this.responseText);
+        loadCameras(response);
+    } else if (this.status === 500 || this.status === 505){
+        showNotification("Couldn't retrieve cameras")
+    }
+}
+
 const notificationTemplate = (msg, isSucess, id) => `
   <div class="notification${isSucess ? '' : ' notifiError'}" id="${id}">
     <div class="notificationContent" id="notificationContent">

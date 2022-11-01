@@ -24,20 +24,13 @@ function loadPage(backEndData){
 
 
 let notificationRequest = makeRequest("GET", "rest/alerts");
-notificationRequest.onreadystatechange = function() {
-    if (this.readyState === 4 && this.status === 200) {
-        const response = JSON.parse(this.responseText);
-        loadNotifications(response);
-    } else if (this.status === 500 || this.status === 505){
-        showNotification("Couldn't retrieve notifications")
-    }
-}
+notificationRequest.onreadystatechange = requestNotifications;
 notificationRequest.setRequestHeader("Content-Type", "application/json");
 notificationRequest.send();
 
 // set the total notification amount in the nav bar
 function loadNotifications(notifications){
-    document.getElementById('numberOfAlerts').innerText = notifications.length;
+    // document.getElementById('numberOfAlerts').innerText = notifications.length;
 }
 
 // the html template of the camera menu item
