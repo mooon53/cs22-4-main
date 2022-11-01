@@ -2,10 +2,6 @@ fetch('./javaScript/fakeBackEndData.json')
     .then((response) => response.json())
     .then((json) => loadPage(json));
 
-fetch('./javaScript/notificationFakeBackEnd.json')
-    .then((response) => response.json())
-    .then((json) => loadNotifications(json));
-
 function loadPage(backEndData){
     let cameras = backEndData["cameras"];
     
@@ -26,9 +22,21 @@ function loadPage(backEndData){
     }
 }
 
+
+let notificationRequest = makeRequest("GET", "rest/alerts");
+notificationRequest.onreadystatechange = function() {
+    if (this.readyState === 4 && this.status === 200) {
+        const response = JSON.parse(this.responseText);
+        loadNotifications(response);
+    } else if (this.status === 500 || this.status === 505){
+        showNotification("Couldn't retrieve notifications")
+    }
+}
+notificationRequest.setRequestHeader("Content-Type", "application/json");
+notificationRequest.send();
+
 // set the total notification amount in the nav bar
-function loadNotifications(noti){
-    const notifications = noti.notifications;
+function loadNotifications(notifications){
     document.getElementById('numberOfAlerts').innerText = notifications.length;
 }
 
