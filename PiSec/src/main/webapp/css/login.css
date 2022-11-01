@@ -197,3 +197,6 @@ body{
     margin-top: 15px;
     font-size: .75rem;
 }
+.invalidInput{
+    border: 1px solid red !important;
+}

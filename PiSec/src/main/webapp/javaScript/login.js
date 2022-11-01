@@ -1,17 +1,17 @@
 function login(username, password) {
-	// document.getElementById('loginName').style.border = `none`;
-	// document.getElementById('loginPassword').style.border = `none`;
-
 	if (!username) {username = document.getElementById("loginName").value;}
 	if (!password) {password = document.getElementById("loginPassword").value;}
 
+	document.getElementById("loginName").classList.remove('invalidInput')
+	document.getElementById("loginPassword").classList.remove('invalidInput')
+
 	if (username === ""){
-		document.getElementById('loginName').style.border = `1px solid red !important`;
+		document.getElementById("loginName").classList.add('invalidInput')
 		showNotification("Fill in a username", false);
 		return;
 	}
 	if (password === ""){
-		document.getElementById('loginPassword').style.border = `1px solid red !important`;
+		document.getElementById("loginPassword").classList.add('invalidInput')
 		showNotification("Fill in a password", false);
 		return;
 	}
@@ -27,8 +27,8 @@ function login(username, password) {
 				setLoginCookies(username);
 				location.href = "/";
 			} else {
-				document.getElementById('loginName').style.border = `1px solid red !important`;
-				document.getElementById('loginPassword').style.border = `1px solid red !important`;
+				document.getElementById("loginName").classList.add('invalidInput')
+				document.getElementById("loginPassword").classList.add('invalidInput')
 				showNotification("Login details are incorrect", false);
 			}
 		}
@@ -42,3 +42,7 @@ function setLoginCookies(username) {
 	document.cookie = `loggedIn=${true};expires=${new Date(expiry).toUTCString()};`;
 	document.cookie = `account=${username};expires=${new Date(expiry).toUTCString()};`;
 }
+
+
+document.getElementById("loginName").addEventListener("focusout",() => document.getElementById("loginName").classList.remove('invalidInput'));
+document.getElementById("loginPassword").addEventListener("focusout",() => document.getElementById("loginPassword").classList.remove('invalidInput'));
