@@ -8,14 +8,6 @@ let otherFinished = false;
 let notifications;
 let cameras = {};
 
-// const notificationRequest = makeRequest("GET", "rest/alerts", true);
-// const camerasRequest = makeRequest("GET", "rest/cameras", true);
-// notificationRequest.onreadystatechange = requestNotifications;
-// camerasRequest.onreadystatechange = requestCameras;
-// notificationRequest.setRequestHeader("Content-Type", "application/json");
-// camerasRequest.setRequestHeader("Content-Type", "application/json");
-// notificationRequest.send();
-// camerasRequest.send();
 makeCameraRequest(loadCameras);
 makeNotificationsRequest(loadNotifications);
 
@@ -56,8 +48,6 @@ function loadCameras(camerasIn){
 
 // once both cameras and notifications are loaded this function is called. And it populates the table.
 function loadTable(notifications, cameras){
-    // console.log(notifications);
-    // console.log(cameras);
     const tableBody = document.getElementById('alertsTbody');
     for (const noti in notifications){
         const notification = notifications[noti];
