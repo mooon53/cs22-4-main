@@ -55,12 +55,12 @@ function getUrlVars() {
 
 // the html template of the notifications.
 const notificationTemplate = (data) => `
-    <div class="notification">
-        <div class="notificationInfo">
-            <div class="notificationDate">
+    <div class="cameraNotification">
+        <div class="cameraNotificationInfo">
+            <div class="cameraNotificationDate">
                 ${data.date.split("T")[0]}
             </div>
-            <div class="notificationTime">
+            <div class="cameraNotificationTime">
                 ${data.date.split("T")[1]}
             </div>
         </div>
