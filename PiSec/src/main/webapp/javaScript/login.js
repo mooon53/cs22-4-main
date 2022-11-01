@@ -1,6 +1,20 @@
-function login2(username, password) {
+function login(username, password) {
+	// document.getElementById('loginName').style.border = `none`;
+	// document.getElementById('loginPassword').style.border = `none`;
+
 	if (!username) {username = document.getElementById("loginName").value;}
 	if (!password) {password = document.getElementById("loginPassword").value;}
+
+	if (username === ""){
+		document.getElementById('loginName').style.border = `1px solid red !important`;
+		showNotification("Fill in a username", false);
+		return;
+	}
+	if (password === ""){
+		document.getElementById('loginPassword').style.border = `1px solid red !important`;
+		showNotification("Fill in a password", false);
+		return;
+	}
 	const hashObj = new jsSHA("SHA-512", "TEXT", {numRounds: 1});
 	hashObj.update(password);
 	password = hashObj.getHash("HEX");
@@ -11,8 +25,12 @@ function login2(username, password) {
 			const response = JSON.parse(this.responseText);
 			if (response.success) {
 				setLoginCookies(username);
-				// location.href = "/";
-			}  // TODO: change text on screen to reflect not success with reason
+				location.href = "/";
+			} else {
+				document.getElementById('loginName').style.border = `1px solid red !important`;
+				document.getElementById('loginPassword').style.border = `1px solid red !important`;
+				showNotification("Login details are incorrect", false);
+			}
 		}
 	}
 	request.setRequestHeader("Content-Type", "application/json");

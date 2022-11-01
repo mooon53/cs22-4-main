@@ -12,7 +12,9 @@ function signUp() {
 	request.onreadystatechange = function() {
 		if (this.readyState === 4 && this.status === 204) {
 			setLoginCookies(username);
+			window.href('/');  // redirect to main page.
 		} else if (this.readyState === 4 && this.status === 500) {
+			showNotification("Username already exits", false);
 			// TODO: account with that username already exists, print this to the screen somwhere
 		}
 	}
