@@ -8,14 +8,16 @@ let otherFinished = false;
 let notifications;
 let cameras = {};
 
-const notificationRequest = makeRequest("GET", "rest/alerts", true);
-const camerasRequest = makeRequest("GET", "rest/cameras", true);
-notificationRequest.onreadystatechange = requestNotifications;
-camerasRequest.onreadystatechange = requestCameras;
-notificationRequest.setRequestHeader("Content-Type", "application/json");
-camerasRequest.setRequestHeader("Content-Type", "application/json");
-notificationRequest.send();
-camerasRequest.send();
+// const notificationRequest = makeRequest("GET", "rest/alerts", true);
+// const camerasRequest = makeRequest("GET", "rest/cameras", true);
+// notificationRequest.onreadystatechange = requestNotifications;
+// camerasRequest.onreadystatechange = requestCameras;
+// notificationRequest.setRequestHeader("Content-Type", "application/json");
+// camerasRequest.setRequestHeader("Content-Type", "application/json");
+// notificationRequest.send();
+// camerasRequest.send();
+makeCameraRequest(loadCameras);
+makeNotificationsRequest(loadNotifications);
 
 const headers = ['dateTime', 'fromId', 'message', 'type'];
 const dayOptions = { weekday: 'long', month: 'short', day: 'numeric' , hour: 'numeric', minute: 'numeric'};  // , second: 'numeric'};
@@ -28,7 +30,7 @@ function loadNotifications(notificationsIn){
         const timeA = new Date(a.dateTime);
         const timeB = new Date(b.dateTime);
         return timeA.getTime() < timeB.getTime();
-    })
+    });
 
     if (!otherFinished) {
         otherFinished = true;

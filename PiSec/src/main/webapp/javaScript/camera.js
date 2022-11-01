@@ -2,9 +2,7 @@ fetch('./javaScript/fakeBackEndData.json')
     .then((response) => response.json())
     .then((json) => loadPage(json));
 
-fetch('./javaScript/notificationFakeBackEnd.json')
-    .then((response) => response.json())
-    .then((json) => loadNotifications(json));
+makeNotificationsRequest(null);
 
 function loadPage(backEndData){
     let cameras = backEndData["cameras"];
@@ -33,7 +31,7 @@ function loadPage(backEndData){
     let notificationsHTML = "";
     for (const i in currentCamera.notifications){
         const noti = currentCamera.notifications[i]
-        notificationsHTML += notificationTemplate(noti, i);
+        notificationsHTML += alertTemplate(noti, i);
     }
 
     // for security input the data as text:
@@ -63,7 +61,7 @@ function getUrlVars() {
 }
 
 // the html template of the notifications.
-const notificationTemplate = (data, i) => `
+const alertTemplate = (data, i) => `
     <div class="cameraNotification">
         <div class="cameraNotificationInfo">
             <div class="cameraNotificationDate" id='cameraNotificationDate${i}'>

@@ -23,15 +23,8 @@ function loadPage(backEndData){
 }
 
 
-let notificationRequest = makeRequest("GET", "rest/alerts");
-notificationRequest.onreadystatechange = requestNotifications;
-notificationRequest.setRequestHeader("Content-Type", "application/json");
-notificationRequest.send();
-
 // set the total notification amount in the nav bar
-function loadNotifications(notifications){
-    // document.getElementById('numberOfAlerts').innerText = notifications.length;
-}
+makeNotificationsRequest(null);
 
 // the html template of the camera menu item
 const cameraItemTemplate = (data) => `
