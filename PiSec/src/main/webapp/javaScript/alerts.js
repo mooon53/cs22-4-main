@@ -70,6 +70,7 @@ function loadTable(notifications, cameras){
                     break;
             }
             tableRow.appendChild(tableCell);
+            tableRow.onclick = () => location.href=`alert.html?id=${notification.id}`;
         }
         tableBody.appendChild(tableRow);
     }

@@ -4,18 +4,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alert</title>
 
-    <title>Notifications</title>
     <link rel="stylesheet" type="text/css" href="css/global.css">
-    <link rel="stylesheet" type="text/css" href="css/alerts.css">
+    <link rel="stylesheet" type="text/css" href="css/alert.css">
 
     <script src="javaScript/requestMaker.js"></script>
     <script src="javaScript/sessionsManager.js"></script>
     <script src="javaScript/miscellaneous.js"></script>
 
-    <script src="javaScript/alerts.js" defer></script>
+    <script src="javaScript/alert.js" defer></script>
 </head>
-<body onload="checkSession()">
+<body>
     <nav class="navBar" style="margin-bottom: 0">
         <div class="leftNavBar">
             <div class="hiddenOnMobile navLogo" onclick="location.href='./'">
@@ -35,21 +35,26 @@
         </div>
     </nav>
 
-  <div class="notificationsTitle">Notifications</div>
-
-  <div class="alertsContainer">
-      <div class="alertsHeader">
-          <div class="alertsHeaderItem">Time</div>
-          <div class="alertsHeaderItem">Camera</div>
-          <div class="alertsHeaderItem">Message</div>
-          <div class="alertsHeaderItem">Type</div>
-      </div>
-      <div class="alerts">
-          <table>
-              <tbody id="alertsTbody">
-              </tbody>
-          </table>
-      </div>
-  </div>
+    <div class="alertHeader">
+        <div class="alertBack" onclick="history.back()">Back</div>
+        <div class="alertTitle" id="alertTitle">Notification</div>
+    </div>
+    <div class="alertContents">
+        <img src="" alt="">
+        <div class="alertContentContent">
+            <div class="alertMsgTitle">Message</div>
+            <div class="alertMsg" id="alertMsg">Intruder has been detected</div>
+            <div class="alertContentContentSubContent">
+                <div >
+                    <div class="alertSubTitle">Time</div>
+                    <div class="alertSubMsg" id="alertTime">15 jan</div>
+                </div>
+                <div >
+                    <div class="alertSubTitle">Notification Type</div>
+                    <div class="alertSubMsg" id="alertType">Motion</div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

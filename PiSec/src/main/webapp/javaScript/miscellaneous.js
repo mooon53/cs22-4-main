@@ -66,3 +66,30 @@ function makeNotificationsRequest(loadedFunc){
     notificationRequest.setRequestHeader("Content-Type", "application/json");
     notificationRequest.send();
 }
+
+function makeSingleNotificationRequest(id, loadedFunc){
+    const notificationRequest = makeRequest("GET", `rest/alerts/${id}`, true);
+    notificationRequest.onreadystatechange = function() {
+        if (this.readyState === 4 && this.status === 200) {
+            const response = JSON.parse(this.responseText);
+
+            if (loadedFunc !== null)
+                loadedFunc(response);
+        } else if (this.status === 500 || this.status === 505){
+            showNotification("Couldn't retrieve notifications")
+        }
+    };
+    notificationRequest.setRequestHeader("Content-Type", "application/json");
+    notificationRequest.send();
+}
+
+
+
+// used to get the parameters from the url, for instance henkie.com/test.html?parameter=value.
+function getUrlVars() {
+    const vars = {};
+    const parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
+        vars[key] = value;
+    });
+    return vars;
+}

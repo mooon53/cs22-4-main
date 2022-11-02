@@ -1,3 +1,10 @@
+.notificationsTitle{
+    height: 40px;
+    font-size: 2em;
+    text-align: center;
+    margin: 20px 0;
+}
+
 #alertsContainer {
     display: flex;
     flex-direction: column;
@@ -37,14 +44,15 @@
 }
 .alertsContainer .alertsHeader .alertsHeaderItem{
     display: flex;
-    flex: 1 0 auto;
+    /*flex: 1 0 auto;*/
     height: 100%;
+    width: 25%;
     align-items: center;
     justify-content: space-evenly;
     /*width: calc((100vw - 15px)/5);*/
 }
 .alertsContainer .alerts{
-    height: calc(100vh - var(--heightNavBar) - var(--heightHeader));
+    height: calc(100vh - var(--heightNavBar) - var(--heightHeader) - 80px);
     overflow-y: scroll;
 }
 .alertsContainer .alerts table{
@@ -60,4 +68,15 @@
 }
 .alertsContainer .alerts tr:nth-of-type(2n+1) {
     background-color: rgba(115, 147, 167, 0.25);
+    cursor: pointer;
+    transition: background-color 500ms;
+}
+.alertsContainer .alerts tr:nth-of-type(2n) {
+    background-color: rgba(115, 147, 167, 0.1);
+    cursor: pointer;
+    transition: background-color 500ms;
+}
+.alertsContainer .alerts tr:hover {
+    /*background-color: rgba(115, 147, 167, 0.4);*/
+    background-color: rgba(72, 77, 92, 0.5);
 }

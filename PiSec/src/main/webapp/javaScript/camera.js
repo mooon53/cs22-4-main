@@ -51,15 +51,6 @@ function loadNotifications(noti){
     document.getElementById('numberOfAlerts').innerText = notifications.length;
 }
 
-// used to get the parameters from the url, for instance henkie.com/test.html?parameter=value.
-function getUrlVars() {
-    const vars = {};
-    const parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
-        vars[key] = value;
-    });
-    return vars;
-}
-
 // the html template of the notifications.
 const alertTemplate = (data, i) => `
     <div class="cameraNotification">
