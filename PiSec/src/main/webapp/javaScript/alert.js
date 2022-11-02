@@ -8,7 +8,7 @@ makeSingleNotificationRequest(Number(urlParameters['id']), loadSingleNotificatio
 const dayOptions = { weekday: 'long', month: 'short', day: 'numeric' , hour: 'numeric', minute: 'numeric'};  // , second: 'numeric'};
 
 function loadSingleNotification(notification){
-    console.log(notification);
+    // console.log(notification);
 
     // document.getElementById('alertTitle').innerText = notification
     document.getElementById('alertMsg').innerText = notification.message;
