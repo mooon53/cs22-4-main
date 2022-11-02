@@ -28,7 +28,7 @@ function signUp() {
 	request.onreadystatechange = function() {
 		if (this.readyState === 4 && this.status === 204) {
 			setLoginCookies(username);
-			window.href('/');  // redirect to main page.
+			window.href = '/';  // redirect to main page.
 		} else if (this.readyState === 4 && this.status === 500) {
 			showNotification("Username already exits", false);
 			document.getElementById("signupName").classList.add('invalidInput');
