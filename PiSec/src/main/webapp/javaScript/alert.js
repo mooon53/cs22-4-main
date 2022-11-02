@@ -8,10 +8,10 @@ makeSingleNotificationRequest(Number(urlParameters['id']), loadSingleNotificatio
 const dayOptions = { weekday: 'long', month: 'short', day: 'numeric' , hour: 'numeric', minute: 'numeric'};  // , second: 'numeric'};
 
 function loadSingleNotification(notification){
-    // console.log(notification);
+    const formatedDate =  new Intl.DateTimeFormat('en-US', dayOptions).format(new Date(notification.dateTime));
 
     // document.getElementById('alertTitle').innerText = notification
-    document.getElementById('alertMsg').innerText = notification.message;
-    document.getElementById('alertTime').innerText = new Intl.DateTimeFormat('en-US', dayOptions).format(new Date(notification.dateTime));
+    document.getElementById('alertMsg').innerText = `Intruder has been detected at ${formatedDate}, The detection has been triggered by ${notification.type}.`;
+    document.getElementById('alertTime').innerText = formatedDate;
     document.getElementById('alertType').innerText = notification.type;
 }

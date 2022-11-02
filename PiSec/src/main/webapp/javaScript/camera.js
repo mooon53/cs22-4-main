@@ -2,7 +2,9 @@ fetch('./javaScript/fakeBackEndData.json')
     .then((response) => response.json())
     .then((json) => loadPage(json));
 
-makeNotificationsRequest(null);
+makeNotificationsRequest(loadNotifications);
+const dayOptions = { weekday: 'long', month: 'short', day: 'numeric'}
+const timeoption =  {hour: 'numeric', minute: 'numeric'};  // , second: 'numeric'};
 
 function loadPage(backEndData){
     let cameras = backEndData["cameras"];
@@ -26,29 +28,28 @@ function loadPage(backEndData){
     document.getElementById('livestreamPlaceholder').setAttribute('src', `images/${currentCamera.showCaseImage}`);
     document.getElementById('livestreamPlaceholder').setAttribute('alt', `${currentCamera.name} livestream`);
     document.getElementById('livestreamPlaceholder').classList.remove('loading');
-    
+}
+
+// set the total notification amount in the nav bar
+function loadNotifications(notifications){
     // fill the notifications:
     let notificationsHTML = "";
-    for (const i in currentCamera.notifications){
-        const noti = currentCamera.notifications[i]
+    for (const i in notifications){
+        const noti = notifications[i]
         notificationsHTML += alertTemplate(noti, i);
     }
 
     // for security input the data as text:
     document.getElementById('notificationsContainer').innerHTML = notificationsHTML;
-    for (const i in currentCamera.notifications){
-        const data = currentCamera.notifications[i]
+    for (const i in notifications){
+        const data = notifications[i]
+        const date = new Date(data.dateTime);
+        console.log(data);
 
-        document.getElementById(`cameraNotificationDate${i}`).innerText = data.date.split("T")[0];
-        document.getElementById(`cameraNotificationTime${i}`).innerText = data.date.split("T")[1];
+        document.getElementById(`cameraNotificationDate${i}`).innerText = new Intl.DateTimeFormat('en-US', dayOptions).format(date);
+        document.getElementById(`cameraNotificationTime${i}`).innerText = new Intl.DateTimeFormat('en-US', timeoption).format(date);
         document.getElementById(`cameraNotifiactionMsg${i}`).innerText = ` ${data.message}`;
     }
-}
-
-// set the total notification amount in the nav bar
-function loadNotifications(noti){
-    const notifications = noti.notifications;
-    document.getElementById('numberOfAlerts').innerText = notifications.length;
 }
 
 // the html template of the notifications.
