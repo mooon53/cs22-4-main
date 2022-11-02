@@ -34,11 +34,32 @@
 }
 
 #disable {
+
     color: #7393A7;
     text-decoration-line: underline;
     font-size: 1.5rem;
     margin-left: 25px;
     margin-top: 10px;
+}
+
+#cameraDisableBtn{
+    cursor: pointer;
+    margin-top: 2vw;
+    margin-left: 1.5vw;
+    padding: 5px 15px;
+
+
+    width: 21vw;
+    border-radius: 20px;
+    font-size: 3vw;
+
+    color: black;
+    background-color: #a7bdcb;
+    transition: background-color 250ms;
+
+}
+#cameraDisableBtn:hover {
+    background-color: #7393A7;
 }
 
 #camera img {
