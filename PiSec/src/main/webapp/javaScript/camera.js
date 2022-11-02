@@ -48,20 +48,19 @@ function loadNotifications(notifications){
 
         document.getElementById(`cameraNotificationDate${i}`).innerText = new Intl.DateTimeFormat('en-US', dayOptions).format(date);
         document.getElementById(`cameraNotificationTime${i}`).innerText = new Intl.DateTimeFormat('en-US', timeoption).format(date);
-        document.getElementById(`cameraNotifiactionMsg${i}`).innerText = ` ${data.message}`;
+        document.getElementById(`cameraNotifiactionMsg${i}`).innerText = `Motion detected`;
     }
 }
 
 // the html template of the notifications.
 const alertTemplate = (data, i) => `
     <div class="cameraNotification">
+        <div ${data.type === 'important' ? 'class="importantNoti"' : ''} id='cameraNotifiactionMsg${i}'>
+        </div>
         <div class="cameraNotificationInfo">
             <div class="cameraNotificationDate" id='cameraNotificationDate${i}'>
             </div>
             <div class="cameraNotificationTime" id='cameraNotificationTime${i}'>
             </div>
-        </div>
-        <div ${data.type === 'important' ? 'class="importantNoti"' : ''} id='cameraNotifiactionMsg${i}'>
-           
         </div>
     </div>`
