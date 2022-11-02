@@ -2,15 +2,6 @@
   "cameras": [
     {
       "id": 0,
-      "name": "Bedroom",
-      "isLive": false,
-      "notifications": [
-
-      ],
-      "showCaseImage": "bedRoom.jpeg"
-    },
-    {
-      "id": 1,
       "name": "Office",
       "isLive": true,
       "notifications":[
@@ -21,6 +12,15 @@
         }
       ],
       "showCaseImage": "office.jpg"
+    },
+    {
+      "id": 1,
+      "name": "Bedroom",
+      "isLive": false,
+      "notifications": [
+
+      ],
+      "showCaseImage": "bedRoom.jpeg"
     },
     {
       "id": 2,

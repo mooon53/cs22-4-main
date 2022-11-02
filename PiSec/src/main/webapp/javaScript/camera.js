@@ -1,17 +1,19 @@
+// get the current camera
+const urlParameters = getUrlVars();
+const id = Number(urlParameters['id']);
+
 fetch('./javaScript/fakeBackEndData.json')
     .then((response) => response.json())
     .then((json) => loadPage(json));
 
-fetch('./javaScript/notificationFakeBackEnd.json')
-    .then((response) => response.json())
-    .then((json) => loadNotifications(json));
+makeNotificationsRequest(loadNotifications);
+const dayOptions = { weekday: 'long', month: 'short', day: 'numeric'}
+const timeoption =  {hour: 'numeric', minute: 'numeric'};  // , second: 'numeric'};
 
 function loadPage(backEndData){
     let cameras = backEndData["cameras"];
-    
-    // get the current camera
-    const urlParameters = getUrlVars();
-    const currentCamera = cameras[urlParameters['id']];
+
+    const currentCamera = cameras[id];
 
     // set the number of devices in the nav bar.
     document.getElementById('numberOfDevices').innerText = cameras.length;
@@ -28,50 +30,42 @@ function loadPage(backEndData){
     document.getElementById('livestreamPlaceholder').setAttribute('src', `images/${currentCamera.showCaseImage}`);
     document.getElementById('livestreamPlaceholder').setAttribute('alt', `${currentCamera.name} livestream`);
     document.getElementById('livestreamPlaceholder').classList.remove('loading');
-    
+}
+
+// set the total notification amount in the nav bar
+function loadNotifications(notifications){
     // fill the notifications:
     let notificationsHTML = "";
-    for (const i in currentCamera.notifications){
-        const noti = currentCamera.notifications[i]
-        notificationsHTML += notificationTemplate(noti, i);
+    for (const i in notifications){
+        const noti = notifications[i];
+        if (noti.fromId !== id) continue;
+
+        notificationsHTML += alertTemplate(noti, i);
     }
 
     // for security input the data as text:
     document.getElementById('notificationsContainer').innerHTML = notificationsHTML;
-    for (const i in currentCamera.notifications){
-        const data = currentCamera.notifications[i]
+    for (const i in notifications){
+        const data = notifications[i]
+        if (data.fromId !== id) continue;
 
-        document.getElementById(`cameraNotificationDate${i}`).innerText = data.date.split("T")[0];
-        document.getElementById(`cameraNotificationTime${i}`).innerText = data.date.split("T")[1];
-        document.getElementById(`cameraNotifiactionMsg${i}`).innerText = ` ${data.message}`;
+        const date = new Date(data.dateTime);
+
+        document.getElementById(`cameraNotificationDate${i}`).innerText = new Intl.DateTimeFormat('en-US', dayOptions).format(date);
+        document.getElementById(`cameraNotificationTime${i}`).innerText = new Intl.DateTimeFormat('en-US', timeoption).format(date);
+        document.getElementById(`cameraNotifiactionMsg${i}`).innerText = `Motion detected`;
     }
 }
 
-// set the total notification amount in the nav bar
-function loadNotifications(noti){
-    const notifications = noti.notifications;
-    document.getElementById('numberOfAlerts').innerText = notifications.length;
-}
-
-// used to get the parameters from the url, for instance henkie.com/test.html?parameter=value.
-function getUrlVars() {
-    const vars = {};
-    const parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
-        vars[key] = value;
-    });
-    return vars;
-}
-
 // the html template of the notifications.
-const notificationTemplate = (data, i) => `
+const alertTemplate = (data, i) => `
     <div class="cameraNotification">
+        <div ${data.type === 'important' ? 'class="importantNoti"' : ''} id='cameraNotifiactionMsg${i}'>
+        </div>
         <div class="cameraNotificationInfo">
             <div class="cameraNotificationDate" id='cameraNotificationDate${i}'>
             </div>
             <div class="cameraNotificationTime" id='cameraNotificationTime${i}'>
             </div>
-        </div>
-        <div ${data.type === 'important' ? 'class="importantNoti"' : ''} id='cameraNotifiactionMsg${i}'>
-           
         </div>
     </div>`
