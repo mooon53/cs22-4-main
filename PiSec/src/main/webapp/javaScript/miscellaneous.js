@@ -1,6 +1,12 @@
 
 // NOTIFICATION ----------
 function showNotification(msg, isSucess, delay){
+    if (!document.getElementById('notifications')){
+        // <div id="notifications"></div>
+        const newNotificationContainer = document.createElement('div');
+        newNotificationContainer.id = 'notifications';
+        document.body.appendChild(newNotificationContainer);
+    }
     if (delay == null) delay = isSucess ? 1000 : 2000;
 
     const date = new Date();
