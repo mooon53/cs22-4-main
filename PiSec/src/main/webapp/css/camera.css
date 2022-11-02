@@ -26,6 +26,9 @@
     gap: 10vw;
 
     align-items: stretch;
+
+    --cameraHeight: min(30vw, 383px);
+    --cameraWidth: min(60vw, 700px);
 }
 
 #cameraContainer {
@@ -45,7 +48,9 @@
 #camera img {
     max-width: 55vw;
     max-height: 40vw;
-    width: 1080px;
+    width: var(--cameraWidth);
+    height: var(--cameraHeight);
+    /*width: 1080px;*/
     background-size: cover;
 
     box-shadow: 2px 5px 5px 0 #1e262b;
@@ -54,8 +59,8 @@
     overflow: hidden;
 }
 #camera > .loading{
-    width: 60vw;
-    height: 30vw;
+    width: var(--cameraWidth);
+    height: var(--cameraHeight);
     overflow: hidden;
     background: #ffffff;
     background: -webkit-linear-gradient(142deg, #ffffff 0%, #dddddd 50%, #ffffff 100%);
@@ -74,6 +79,7 @@
 @media (max-width: 800px) {
     #contentContainer{
         flex-direction: column;
+        align-items: center;
         gap: 10px;
     }
     #camera img {
@@ -103,6 +109,7 @@
     box-shadow: 2px 5px 5px 0 #1e262b;
     border-radius: 10px;
     overflow: hidden;
+    height: max(var(--cameraHeight), 250px);
 }
 .notificationHeader{
     font-weight: bold;
@@ -118,6 +125,8 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+
+    overflow-y: auto;
 }
 
 .cameraNotification {

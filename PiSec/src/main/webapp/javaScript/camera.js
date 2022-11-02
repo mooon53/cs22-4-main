@@ -1,3 +1,7 @@
+// get the current camera
+const urlParameters = getUrlVars();
+const id = Number(urlParameters['id']);
+
 fetch('./javaScript/fakeBackEndData.json')
     .then((response) => response.json())
     .then((json) => loadPage(json));
@@ -8,10 +12,8 @@ const timeoption =  {hour: 'numeric', minute: 'numeric'};  // , second: 'numeric
 
 function loadPage(backEndData){
     let cameras = backEndData["cameras"];
-    
-    // get the current camera
-    const urlParameters = getUrlVars();
-    const currentCamera = cameras[urlParameters['id']];
+
+    const currentCamera = cameras[id];
 
     // set the number of devices in the nav bar.
     document.getElementById('numberOfDevices').innerText = cameras.length;
@@ -35,7 +37,9 @@ function loadNotifications(notifications){
     // fill the notifications:
     let notificationsHTML = "";
     for (const i in notifications){
-        const noti = notifications[i]
+        const noti = notifications[i];
+        if (noti.fromId !== id) continue;
+
         notificationsHTML += alertTemplate(noti, i);
     }
 
@@ -43,8 +47,9 @@ function loadNotifications(notifications){
     document.getElementById('notificationsContainer').innerHTML = notificationsHTML;
     for (const i in notifications){
         const data = notifications[i]
+        if (data.fromId !== id) continue;
+
         const date = new Date(data.dateTime);
-        console.log(data);
 
         document.getElementById(`cameraNotificationDate${i}`).innerText = new Intl.DateTimeFormat('en-US', dayOptions).format(date);
         document.getElementById(`cameraNotificationTime${i}`).innerText = new Intl.DateTimeFormat('en-US', timeoption).format(date);
