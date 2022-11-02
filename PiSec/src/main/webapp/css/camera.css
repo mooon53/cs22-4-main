@@ -116,6 +116,10 @@
     .notificationContainer{
         width: 60vw;
     }
+    .cameraDisableBtnContainer{
+        display: flex;
+        justify-content: center;
+    }
 }
 
 /* ----- Notifications ----- */
