@@ -47,13 +47,6 @@
 			<scope>test</scope>
 		</dependency>
 
-<!--		<dependency>-->
-<!--			<groupId>javax.servlet</groupId>-->
-<!--			<artifactId>javax.servlet-api</artifactId>-->
-<!--			<version>3.1.0</version>-->
-<!--			<scope>provided</scope>-->
-<!--		</dependency>-->
-
 		<!-- https://mvnrepository.com/artifact/jakarta.servlet/jakarta.servlet-api -->
 		<dependency>
 			<groupId>jakarta.servlet</groupId>
@@ -114,12 +107,6 @@
 			<version>20220924</version>
 		</dependency>
 
-<!--		&lt;!&ndash; https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple &ndash;&gt;-->
-<!--		<dependency>-->
-<!--			<groupId>com.googlecode.json-simple</groupId>-->
-<!--			<artifactId>json-simple</artifactId>-->
-<!--			<version>1.1.1</version>-->
-<!--		</dependency>-->
 		<!-- https://mvnrepository.com/artifact/io.edurt.gcm/gcm-sqllite -->
 		<dependency>
 			<groupId>io.edurt.gcm</groupId>
