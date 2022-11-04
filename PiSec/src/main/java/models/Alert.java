@@ -19,16 +19,13 @@ public class Alert {
 		this.message = "";
 		this.type = "motion";
 		this.dateTime = dateTime;
-		this.imagePath = imagePath;
+		this.imagePath = System.getProperty("user.home") + "/Pictures/" + imagePath;
 	}
 
-	public Alert(int id, Date dateTime) {
-		this(id, dateTime, null);
-	}
+	public Alert(int id, Date dateTime) {this(id, dateTime, null);}
 
 	public void encodeImage() {
-		String home = System.getProperty("user.home");
-		try (FileInputStream stream = new FileInputStream(home + "/Pictures/" + imagePath);
+		try (FileInputStream stream = new FileInputStream(imagePath);
 		     ByteArrayOutputStream out = new ByteArrayOutputStream()){
 			int bufLength = 2048;
 			byte[] buffer = new byte[2048];
