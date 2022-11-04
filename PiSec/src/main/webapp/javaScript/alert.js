@@ -10,6 +10,14 @@ const dayOptions = { weekday: 'long', month: 'short', day: 'numeric' , hour: 'nu
 function loadSingleNotification(notification){
     const formatedDate =  new Intl.DateTimeFormat('en-US', dayOptions).format(new Date(notification.dateTime));
 
+    if (notification.image !== '')
+        document.getElementById('alertVideo').setAttribute('src', `data:video/mp4;base64, ${notification.image}`);
+    else {
+        fetch('./startVideo.txt')
+            .then((response) => response.text())
+            .then((txt) => document.getElementById('alertVideo').setAttribute('src', `data:video/mp4;base64, ${txt}`))
+    }
+
     // document.getElementById('alertTitle').innerText = notification
     document.getElementById('alertMsg').innerText = `Intruder has been detected at ${formatedDate}, The detection has been triggered by ${notification.type}.`;
     document.getElementById('alertTime').innerText = formatedDate;
