@@ -61,7 +61,7 @@ try:
             dateTime = str(round(time() * 1000))
             path = '~/Pictures/' + dateTime
             os.system('libcamera-vid -t 30000 --width 1920 --height 1080 -o ' + path + '.h264')
-            os.system('ffmpeg -i ' + path + '.h264 ' + path + '.mp4')
+            os.system('ffmpeg -i ' + path + '.h264 -y ' + path + '.mp4')
             print('Motion')
             # send_whatsapp(31637171525)
             send_email("t.frauenfelder@student.utwente.nl")
