@@ -43,7 +43,6 @@ def alert(dateTime , path):
 
 # sudo nano /boot/config.txt
 # at the end change dtoverlay line to dtoverlay=imx219
-GPIO.cleanup()
 GPIO.setmode(GPIO.BOARD)
 sensor = 11
 led = 37
@@ -60,13 +59,13 @@ try:
         if value != 0:
             GPIO.output(led, GPIO.HIGH)
             dateTime = str(round(time() * 1000))
-            filename = dateTime + ".jpg"
-            path = '~/Pictures/' + filename
-            os.system('libcamera-jpeg -o ' + path)
+            path = '~/Pictures/' + dateTime
+            os.system('libcamera-vid -t 30000 --width 1920 --height 1080 -o ' + path + '.h264')
+            os.system('ffmpeg -i ' + path + '.h264 ' + path + '.mp4')
             print('Motion')
-            send_whatsapp(31637171525)
+            # send_whatsapp(31637171525)
             send_email("t.frauenfelder@student.utwente.nl")
-            alert(dateTime, filename)
+            alert(dateTime, dateTime + '.mp4')
             sleep(10) #change to 30s when implement recording
         else:
             GPIO.output(led, GPIO.LOW)
@@ -77,6 +76,3 @@ try:
 except KeyboardInterrupt:
     print('Quit')
     GPIO.cleanup()
-
-
-
