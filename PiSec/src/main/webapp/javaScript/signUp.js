@@ -3,17 +3,17 @@
 function signUp() {
 	const passwordIn = document.getElementById("signupPassword").value
 	const username = document.getElementById("signupName").value;
-	if (username == ""){
+	if (username === ""){
 		showNotification("Enter a username", false);
 		document.getElementById("signupName").classList.add('invalidInput');
 		return;
 	}	
-	if (passwordIn == ""){
+	if (passwordIn === ""){
 		showNotification("Enter a password", false);
 		document.getElementById("signupPassword").classList.add('invalidInput');
 		return;
 	}
-	if (passwordIn.length <= 5){
+	if (passwordIn.length < 5){
 		showNotification("Password has to have at least 5 characters", false);
 		document.getElementById("signupPassword").classList.add('invalidInput');
 		return;
