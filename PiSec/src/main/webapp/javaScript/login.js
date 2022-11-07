@@ -31,6 +31,8 @@ function login(username, password) {
 				document.getElementById("loginPassword").classList.add('invalidInput')
 				showNotification("Login details are incorrect", false);
 			}
+		} else {
+			showNotification("Login details are incorrect", false);
 		}
 	}
 	request.setRequestHeader("Content-Type", "application/json");
