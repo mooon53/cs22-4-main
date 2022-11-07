@@ -59,7 +59,7 @@ function loadNotifications(notifications){
 
 // the html template of the notifications.
 const alertTemplate = (data, i) => `
-    <div class="cameraNotification">
+    <div class="cameraNotification" onclick="location.href='alert.html?id=${data.id}'">
         <div ${data.type === 'important' ? 'class="importantNoti"' : ''} id='cameraNotifiactionMsg${i}'>
         </div>
         <div class="cameraNotificationInfo">
