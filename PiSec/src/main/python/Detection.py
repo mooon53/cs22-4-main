@@ -1,5 +1,3 @@
-import datetime
-
 import RPi.GPIO as GPIO
 import os
 from time import sleep, time
@@ -22,23 +20,24 @@ def create_connection(db_file):
     return conn
 
 
-def create_alert_record(conn, alert):
+def create_alert_record(conn, alertdata):
     """create new record in alert table"""
     sql = "INSERT INTO alert(date_time, recording) VALUES (?, ?)"
 
     cur = conn.cursor()
-    cur.execute(sql, alert)
+    cur.execute(sql, alertdata)
     conn.commit()
     return cur.lastrowid
 
-def alert(dateTime , path):
+
+def alert(datetime, filepath):
     database = r"PiSec.db"
     # create a database connection
     conn = create_connection(database)
     with conn:
         # create a new record in motion
-        alert = (dateTime, path)
-        alert_id = create_alert_record(conn, alert)
+        alertdata = (datetime, filepath)
+        create_alert_record(conn, alertdata)
 
 
 # sudo nano /boot/config.txt
@@ -62,13 +61,13 @@ try:
             fileName = dateTime + '.mp4'
             path = '~/Pictures/' + fileName
             os.system('libcamera-vid -t 30000 --width 1920 --height 1080 -o temp.h264')
-            os.system('ffmpeg -i temp.h264 -y ' + path)
-            os.system('rm ' + path)
+            os.system('ffmpeg -i temp.h264 -c h264_v4l2m2m -y ' + path)
+            os.system('rm ~/Pictures/temp.h264')
             print('Motion')
-            # send_whatsapp(31637171525)
+            send_whatsapp(31637171525)
             send_email("t.frauenfelder@student.utwente.nl")
-            alert(dateTime, dateTime + '.mp4')
-            sleep(10) #change to 30s when implement recording
+            alert(dateTime, fileName)
+            sleep(10)  # change to 30s when implement recording
         else:
             GPIO.output(led, GPIO.LOW)
             sleep(2)
