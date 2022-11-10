@@ -17,8 +17,11 @@ public class AccountsResource {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public Account getAccountInfo(@HeaderParam("sessionId") String sessionId) {
-		Session session = INSTANCE.getSession(sessionId);
-		return session.getAccount();
+		if (INSTANCE.sessionExists(sessionId)) {
+			Session session = INSTANCE.getSession(sessionId);
+			return session.getAccount();
+		}
+		return null;
 	}
 
 	@PUT
@@ -37,20 +40,26 @@ public class AccountsResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public String logIn(String input, @HeaderParam("sessionId") String sessionId) {
-		JSONObject accountData = new JSONObject(input);
-		String username = accountData.getString("username");
-		Account account = getAccount(username);
-		String salt = account.getSalt();
-		String password = preparePassword(accountData.getString("password"), salt);
 		JSONObject response = new JSONObject();
-		if (account.checkPassword(password)) {
-			Session session = INSTANCE.getSession(sessionId);  // TODO: check if session exists and isn't logged in
-			session.login(account);
-			response.put("success", true);
-			return response.toString();
+		if (INSTANCE.sessionExists(sessionId) && !INSTANCE.sessionLoggedIn(sessionId)) {
+			JSONObject accountData = new JSONObject(input);
+			String username = accountData.getString("username");
+			Account account = getAccount(username);
+			String salt = account.getSalt();
+			String password = preparePassword(accountData.getString("password"), salt);
+			if (account.checkPassword(password)) {
+				Session session = INSTANCE.getSession(sessionId);  // TODO: check if session exists and isn't logged in
+				session.login(account);
+				response.put("success", true);
+				return response.toString();
+			} else {
+				response.put("success", false);
+				response.put("info", "incorrect login details");
+				return response.toString();
+			}
 		}
-		response.put("success", false);
-		response.put("info", "incorrect login details");
+		response.put("succes", false);
+		response.put("info", "session does not exist");
 		return response.toString();
 	}
 }

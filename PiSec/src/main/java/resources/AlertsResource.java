@@ -5,6 +5,7 @@ import models.*;
 
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.*;
+import java.util.Collections;
 
 import java.util.List;
 
@@ -15,8 +16,8 @@ public class AlertsResource {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Alert> getAlerts(@HeaderParam("sessionId") String sessionId) {
-		if (INSTANCE.sessionExists(sessionId)) return DatabaseAccess.getAlerts();
-		else return null;
+		if (INSTANCE.sessionLoggedIn(sessionId)) return DatabaseAccess.getAlerts();
+		else return Collections.emptyList();
 	}
 
 	@Path("{id}")

@@ -27,30 +27,25 @@ public enum SessionHolder {
 	}
 
 	public boolean sessionExists(String sessionId) {
-		return true; // TODO: remove this when testing is done, Temporary for testing
-//		if (!sessions.containsKey(sessionId) || sessions.get(sessionId) == null) return false;
-//		return !sessions.get(sessionId).expired();
+//		return true; // TODO: remove this when testing is done, Temporary for testing
+		if (!sessions.containsKey(sessionId) || sessions.get(sessionId) == null) return false;
+		return !sessions.get(sessionId).expired();
 	}
 
 	public boolean sessionLoggedIn(String sessionId, Account account) {
 		if (!sessionExists(sessionId)) return false;
-		Session session = sessions.get(sessionId);
-		return session.getAccount().equals(account);
+		return sessions.get(sessionId).getLoggedIn();
+//		Session session = sessions.get(sessionId);
+//		return session.getAccount().equals(account);
 	}
 
+	public boolean sessionLoggedIn(String sessionId) {return sessionLoggedIn(sessionId, null);}
+
 	public Session addSession() {
-		String sessionId = null;
-		Session session = null;
-		while (!sessions.containsKey(sessionId)) {
-			sessionId = Long.toUnsignedString(random.nextLong(), 16);
-			session = new Session(new Date(), sessionId);
-			sessions.put(sessionId, session);
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
+		String sessionId = Long.toUnsignedString(random.nextLong(), 16);
+		while (sessions.containsKey(sessionId)) sessionId = Long.toUnsignedString(random.nextLong(), 16);
+		Session session = new Session(new Date(), sessionId);
+		sessions.put(sessionId, session);
 		return session;
 	}
 }

@@ -5,8 +5,8 @@ function checkSession() {
 	if (!cookieMap.has("sessionId") || cookieMap.get("sessionExpires") < new Date().getTime()) newSession();
 	if (!cookieMap.get("loggedIn") && !location.href.endsWith("login.html")){
 		location.href = "login.html";
-		// console.log("you are not logged in, in the future this will redirect");
 	}
+	checkSessionServer();
 }
 
 function checkSessionServer() {
@@ -17,8 +17,12 @@ function checkSessionServer() {
 			document.cookie = `sessionId=${response.sessionId};expires=${new Date(response.expiration).toUTCString()};`;
 			document.cookie = `sessionExpires=${response.expiration};expires=${new Date(response.expiration).toUTCString()};`;
 			document.cookie = `loggedIn=${response.loggedIn};expires=${new Date(response.expiration).toUTCString()};`;
-			if (response.loggedIn) document.cookie = `account=${response.account};expires=${new Date(response.expiration).toUTCString()};`;
-		} else newSession();
+			if (response.loggedIn) document.cookie = `account=${response.account.username};expires=${new Date(response.expiration).toUTCString()};`;
+			else {
+				document.cookie = 'account=;';
+				if (!location.href.endsWith("login.html")) location.href = "login.html";
+			}
+		}
 	};
 	request.setRequestHeader("Accept", "application/json");
 	request.send();

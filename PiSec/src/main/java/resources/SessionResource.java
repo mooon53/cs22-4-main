@@ -17,7 +17,5 @@ public class SessionResource {
 
 	@PUT
 	@Produces(MediaType.APPLICATION_JSON)
-	public Session newSession() {
-		return INSTANCE.addSession();
-	}
+	public Session newSession() {return INSTANCE.addSession();}
 }
