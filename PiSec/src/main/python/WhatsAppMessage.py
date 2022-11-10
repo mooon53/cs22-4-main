@@ -2,7 +2,7 @@ import requests
 
 def send_whatsapp(x):
     headers = {
-        'Authorization': 'Bearer EAAJErtnssFEBANxpkDgPSaABCZCGgMRpuVclZBloAGCbLnnq9t78ARTYmtMxZBa1scC3oQV3CFzev0hoVGzs7ZBiQX2Bcca2muW982pZBA3wxy3jQ35Y4tVlsWR1EpzmvYZCaTWK8z8iZBX0SgZBovR42ZBgU2rg7prXdf2HdqlkcZABIhcdfOermkIB4ZCpIgZC6MROUyalYk6sFRyp3EEBwRYL',
+        'Authorization': 'Bearer EAAJErtnssFEBAAnkzuxy1JOZA6KdXDnmbWn1ruPeqZCoSkeYy9ZAFdhBvjWHZBX0Efv7XsThgpOtcfB9WaR9Uah8mW09yJu4u1tRBdAHQOUDZC25sSidCgRQ5wgObvsPZA6lFVBaCiMY1tnnKkEfQRA8z2L5KtCA5eUACzDq3ZB5F8HjqhWvcmXIc9MDZBBOLZCAbFZBZA9ac3fyJ8xOtrrA1f4',
         # Already added when you pass json= but not when you pass data=
         # 'Content-Type': 'application/json',
     }
